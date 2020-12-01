@@ -25,3 +25,22 @@
 #container a {
   text-decoration: none;
 }
+
+/*------------------------*/
+
+.sideway-scroll {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin: 10px;
+}
+
+.cat {
+  display: inline;
+  width: 20px;
+}
+
+.headings {
+  
+  font-weight: bold;
+}
