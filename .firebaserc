@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "deliveryapp-f931e": {
+      "hosting": {
+        "app": [
+          "deliveryapp-f931e"
+        ]
+      }
+    }
+  }
+}

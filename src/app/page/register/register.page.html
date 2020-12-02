@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="register('ofentsemasita@outlook.com', 'testing')">
+    register
+  </ion-button>
+
+  <ion-button (click)="login('ofentsemasita@outlook.com', 'testing')">
+    login
+  </ion-button>
+
+  <ion-button (click)="logout()">
+    logout
+  </ion-button>
+
+  <ion-button (click)="getUser()">
+    id
+  </ion-button>
+
+  <hr>
+
+  <ion-button color="light" (click)="register('ofentsemasita@gmail.com', 'testing')">
+    register
+  </ion-button>
+
+  <ion-button color="light" (click)="login('ofentsemasita@gmail.com', 'testing')">
+    login
+  </ion-button>
+
+  <ion-button color="light" (click)="logout()">
+    logout
+  </ion-button>
+
+  <ion-button color="light" (click)="getUser()">
+    id
+  </ion-button>
+
+</ion-content>
