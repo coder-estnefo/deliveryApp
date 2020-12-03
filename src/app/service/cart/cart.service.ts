@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export interface Item {
+export interface CartItems {
   no: string;
   name: string;
   desc: string;
@@ -15,7 +15,7 @@ export interface Item {
 })
 export class CartService {
 
-  cartList: Item[] = [];
+  cartList: CartItems[] = [];
 
   constructor() { }
 
@@ -25,8 +25,7 @@ export class CartService {
     let desc = item.desc;
     let price = item.price;
     let image = item.image;
-    let quantity = item.quantity;
-    let total_price = item.total_price;
+    let quantity;
     let isFound = false;
 
     if (this.cartList.length > 0) {
@@ -42,10 +41,12 @@ export class CartService {
 
         if (isFound == false) {
           this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
-                          'image': image,'quantity': quantity, 'total_price': total_price});
+                          'image': image,'quantity': quantity, 'total_price': price});
         }
       }
     } else {
+      quantity = 1;
+      let total_price = price;
       this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
                           'image': image,'quantity': quantity, 'total_price': total_price});
     }
