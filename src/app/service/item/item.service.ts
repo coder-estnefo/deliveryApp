@@ -16,6 +16,8 @@ export interface Item {
 }) 
 export class ItemService {
 
+  uploadPercent;
+
   constructor(
     private firestore: AngularFirestore,
     private storage: AngularFireStorage
@@ -29,8 +31,10 @@ export class ItemService {
     let fileRef = this.storage.ref(`images/${filePath}`);
     let task = this.storage.upload(`images/${filePath}`, file);
 
+    //task.percentageChanges()
 
 
+    //NOT DONE              
   }
 
   addItem(item) {
