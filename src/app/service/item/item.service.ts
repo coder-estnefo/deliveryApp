@@ -58,4 +58,12 @@ export class ItemService {
       console.error(error);
     })
   }
+
+  updateItem() {
+
+  }
+
+  deleteItem() {
+    
+  }
 }
