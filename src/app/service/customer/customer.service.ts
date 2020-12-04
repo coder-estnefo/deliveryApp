@@ -7,9 +7,15 @@ export class CustomerService {
 
   constructor() { }
 
-  setLocation() {
+  
+  //setAddress() ????
+
+  setLocation(lat, lng) {
 
   }
 
-  
+
+  updateLocation(lat, lng) {
+
+  }
 }
