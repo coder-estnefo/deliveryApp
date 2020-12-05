@@ -12,13 +12,24 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'register',
-    loadChildren: () => import('./page/register/register.module').then( m => m.RegisterPageModule)
-  },
-  {
-    path: 'items',
-    loadChildren: () => import('./page/items/items.module').then( m => m.ItemsPageModule)
-  },
+    path: 'home',
+    children: [
+      {
+        path: 'register',
+        loadChildren: () => import('./page/register/register.module').then( m => m.RegisterPageModule)
+      },
+      {
+        path: 'items',
+        loadChildren: () => import('./page/items/items.module').then( m => m.ItemsPageModule)
+      },
+      {
+        path: 'cart',
+        loadChildren: () => import('./page/cart/cart.module').then( m => m.CartPageModule)
+      },
+    ]
+  }
+  
+
 ];
 
 @NgModule({
