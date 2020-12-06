@@ -1,0 +1,44 @@
+.sideway-scroll {
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin: 10px;
+}
+  
+.cat {
+    display: inline;
+    width: 20px;
+}
+
+.item {
+    height: 340px;
+}
+
+.image {
+
+    height: 200px;
+    background: rgb(189, 189, 189)
+}
+
+.item-info {
+    padding: 10px;
+}
+
+.item-title {
+    font-size: 26px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.item-desc {
+    font-size: 20px;
+}
+
+.item-price {
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.item-buttons {
+    padding-left: 10px;
+}

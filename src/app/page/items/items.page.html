@@ -1,9 +1,74 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>items</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Items</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="cart-outline"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="sideway-scroll">
+    <div class="cat">
+      <ion-button shape="round" color="light">
+        All
+      </ion-button>
+    </div>
+
+    <div class="cat">
+      <ion-button shape="round" color="light">
+        Salads
+      </ion-button>
+    </div>
+
+    <div class="cat">
+      <ion-button shape="round" color="light">
+        Burgers
+      </ion-button>
+    </div>
+
+    <div class="cat">
+      <ion-button shape="round" color="light">
+        Pizza
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card class="item">
+          <div class="image">
+
+          </div>
+          <div class="item-info">
+            <ion-text class="item-title">Item</ion-text><br>
+            <ion-text class="item-desc">desc</ion-text><br>
+            <ion-text class="item-price">R9.99</ion-text>
+          </div>
+          <div class="item-buttons">
+            <ion-button shape="round" size="small" color="light">
+              <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    
+  </ion-grid>
+
+
+
+  <!-- <ion-tabs>
+    <ion-tab-bar slot="bottom" color="light">
+      <ion-tab-button routerLink="/home/cart">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-label>Cart</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs> -->
 
 </ion-content>
