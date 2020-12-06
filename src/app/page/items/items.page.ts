@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from 'src/app/service/login/login.service';
+import { CartService } from 'src/app/service/cart/cart.service';
+import { ItemService } from 'src/app/service/item/item.service';
 
 @Component({
   selector: 'app-items',
@@ -8,9 +9,33 @@ import { LoginService } from 'src/app/service/login/login.service';
 })
 export class ItemsPage implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  itemsList;
+  cartCount;
+
+  constructor(
+    private itemService: ItemService,
+    public cartService: CartService
+  ) { }
 
   ngOnInit() {
+    this.getItems();
+    this.cartCount = this.cartService.getCartCount();
+  }
+
+  getItems() {
+    this.itemService.getItems().subscribe(item => {
+      this.itemsList = item;
+    });
+  }
+
+  addItem(item) {
+    this.cartService.addToCart(item);
+    this.cartCount = this.cartService.getCartCount();
+  }
+
+  deleteItem(item) {
+    this.cartService.removeItem(item);
+    this.cartCount = this.cartService.getCartCount();
   }
 
 }

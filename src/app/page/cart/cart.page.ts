@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { OrderPage } from 'src/app/modal/order/order.page';
+import { CartService } from 'src/app/service/cart/cart.service';
 
 
 @Component({
@@ -10,9 +11,15 @@ import { OrderPage } from 'src/app/modal/order/order.page';
 })
 export class CartPage implements OnInit {
 
-  constructor(public modalController: ModalController) { }
+  cartList;
+
+  constructor(
+    public modalController: ModalController,
+    public cartService: CartService
+  ) { }
 
   ngOnInit() {
+    this.cartList = this.cartService.getCartItems();
   }
 
   async presentModal() {

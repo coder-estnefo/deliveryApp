@@ -22,7 +22,7 @@ export class CartService {
   addToCart(item) {
     let item_no = item.no;
     let name = item.name;
-    let desc = item.desc;
+    let desc = item.description;
     let price = item.price;
     let image = item.image;
     let quantity;
@@ -32,24 +32,26 @@ export class CartService {
       for (let current_item in this.cartList) {
         if (this.cartList[current_item]['no'] == item_no) {
           let price = this.cartList[current_item]['price'];
-          let quantity = this.cartList[current_item]['quantity'];
-          this.cartList[current_item]['quantity'] += quantity;
+          this.cartList[current_item]['quantity'] += 1;
           this.cartList[current_item]['total_price'] += price;
           isFound = true;
           break; 
         }
-
-        if (isFound == false) {
-          this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
-                          'image': image,'quantity': quantity, 'total_price': price});
-        }
       }
+
+      if (isFound == false) {
+        this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
+                        'image': image,'quantity': 1, 'total_price': price});
+      }
+
     } else {
       quantity = 1;
       let total_price = price;
       this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
                           'image': image,'quantity': quantity, 'total_price': total_price});
     }
+
+    console.log(this.cartList);
   }
 
   removeItem(item) {
@@ -95,6 +97,10 @@ export class CartService {
     if (this.cartList.length > 0) {
       this.cartList.splice(0, this.cartList.length);
     }
+  }
+
+  getCartItems() {
+    return this.cartList;
   }
 
 }

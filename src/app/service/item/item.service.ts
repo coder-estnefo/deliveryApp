@@ -23,6 +23,10 @@ export class ItemService {
     private storage: AngularFireStorage
   ) { }
 
+  getItems() {
+    return this.firestore.collection<Item>('items').valueChanges();
+  }
+
   uploadFile(event) {
     let file = event.target.files[0];
     let fileName = file.name;
