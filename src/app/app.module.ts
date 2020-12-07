@@ -13,9 +13,10 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment.prod';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage'
+import { ShopPage } from './page/shop/shop.page';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ShopPage],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),

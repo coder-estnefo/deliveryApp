@@ -63,10 +63,12 @@ export class CartService {
           let price = this.cartList[current_item]['price'];
           this.cartList[current_item]['total_price'] -= price;
           this.cartList[current_item]['quantity'] -= 1;
+          break;
         }
-        
+
         if (this.cartList[current_item]['quantity'] == 0) {
           this.cartList.splice(this.cartList.indexOf(item),1);
+          break;
         }
       }
     }
@@ -92,6 +94,8 @@ export class CartService {
     for (let current_item in this.cartList) {
       total += this.cartList[current_item]['total_price'];
     }
+
+    return total.toFixed(2);
   }
 
   clearCart() {

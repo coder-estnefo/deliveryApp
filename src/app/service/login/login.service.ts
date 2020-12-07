@@ -24,7 +24,7 @@ export class LoginService {
   login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       console.log('logged in');
-      this.router.navigate(['/home/items']);
+      this.router.navigate(['/shop/home']);
       //this.getUserID();
     }).catch(error => {
       console.log('Unable to login -> ',error);

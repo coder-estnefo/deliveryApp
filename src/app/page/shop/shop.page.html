@@ -1,0 +1,62 @@
+<ion-content>
+
+  <div class="headings">
+    <ion-title>Categories</ion-title>
+  </div>
+  
+  <div class="sideway-scroll">
+    <div class="cat">
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+      <ion-button shape="round">
+        00
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="headings">
+    <ion-title>Categories</ion-title>
+  </div>
+
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="items">
+        <ion-icon name="basket-outline"></ion-icon>
+        <ion-label>Shop</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="cart">
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge>{{cartService.getCartCount()}}</ion-badge>
+        <ion-label>Cart</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-content>

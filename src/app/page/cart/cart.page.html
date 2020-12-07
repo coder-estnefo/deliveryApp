@@ -1,11 +1,11 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home/items"></ion-back-button>
+      <ion-back-button defaultHref="/shop/items"></ion-back-button>
     </ion-buttons>
     <ion-title>Cart</ion-title>
     <ion-buttons slot="end">
-      <ion-button routerLink="/home/cart">
+      <ion-button routerLink="/shop/cart">
         <ion-icon name="cart-outline"></ion-icon>
         <ion-badge>{{cartService.getCartCount()}}</ion-badge>
       </ion-button>
@@ -19,7 +19,7 @@
 
     <div *ngIf="cartList.length == 0">
       No Items in Cart
-      <ion-button expand="full" color="light" routerLink="/home/items">
+      <ion-button expand="full" color="light" routerLink="/shop/items">
         Continue Shopping
       </ion-button>
     </div>
@@ -49,7 +49,7 @@
     
     <div *ngIf="cartList.length > 0">
       <ion-button expand="full" color="light" (click)="order()">
-        Place Order {{cartService.getCartPrice()}}
+        Place Order R{{cartService.getCartPrice()}}
       </ion-button>
     </div>
 

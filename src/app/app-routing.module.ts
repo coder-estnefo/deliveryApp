@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { HomePage } from './home/home.page';
+import { ShopPage } from './page/shop/shop.page';
 
 const routes: Routes = [
+ 
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
+    // path: '',
+    // redirectTo: 'home',
+    // pathMatch: 'full'
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'shop',
     pathMatch: 'full'
   },
   {
-    path: 'home',
+    path: 'shop',
+    component: ShopPage,
     children: [
       {
         path: 'register',
@@ -33,9 +36,18 @@ const routes: Routes = [
       {
         path: 'login',
         loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
-      }
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+      },
     ]
   },
+  // {
+  //   path: 'shop',
+  //   loadChildren: () => import('./page/shop/shop.module').then( m => m.ShopPageModule)
+  // },
+
 
   
 
