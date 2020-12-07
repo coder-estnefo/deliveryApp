@@ -14,6 +14,7 @@ import { environment } from '../environments/environment.prod';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { ShopPage } from './page/shop/shop.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, ShopPage],
@@ -21,7 +22,8 @@ import { ShopPage } from './page/shop/shop.page';
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
             AngularFireModule.initializeApp(environment.firebaseConfig),
             AngularFirestoreModule,
-            AngularFireStorageModule
+            AngularFireStorageModule,
+            HttpClientModule
           ],
   providers: [
     StatusBar,
