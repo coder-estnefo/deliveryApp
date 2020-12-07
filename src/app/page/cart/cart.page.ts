@@ -33,4 +33,16 @@ export class CartPage implements OnInit {
     this.presentModal();
   }
 
+  addItem(item) {
+    this.cartService.addToCart(item);
+  }
+
+  removeItem(item) {
+    this.cartService.removeItem(item);
+  }
+
+  removeItems(item) {
+    this.cartService.removeItems(item);
+  }
+
 }

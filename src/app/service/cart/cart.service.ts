@@ -61,10 +61,11 @@ export class CartService {
       if (this.cartList[current_item]['no'] == item_no) {
         if (this.cartList[current_item]['quantity'] > 0) {
           let price = this.cartList[current_item]['price'];
-          let quantity = this.cartList[current_item]['quantity'];
           this.cartList[current_item]['total_price'] -= price;
-          this.cartList[current_item]['quantity'] -= quantity;
-        } else if (this.cartList[current_item]['quantity'] == 0) {
+          this.cartList[current_item]['quantity'] -= 1;
+        }
+        
+        if (this.cartList[current_item]['quantity'] == 0) {
           this.cartList.splice(this.cartList.indexOf(item),1);
         }
       }
