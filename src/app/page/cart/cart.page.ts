@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 import { OrderPage } from 'src/app/modal/order/order.page';
 import { CartService } from 'src/app/service/cart/cart.service';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.page.html',

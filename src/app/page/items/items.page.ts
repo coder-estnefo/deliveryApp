@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/service/cart/cart.service';
 import { ItemService } from 'src/app/service/item/item.service';
+import { LoginService } from 'src/app/service/login/login.service';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-items',
@@ -14,7 +17,8 @@ export class ItemsPage implements OnInit {
 
   constructor(
     private itemService: ItemService,
-    public cartService: CartService
+    public cartService: CartService,
+    public loginService: LoginService
   ) { }
 
   ngOnInit() {

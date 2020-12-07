@@ -26,11 +26,16 @@ const routes: Routes = [
         path: 'cart',
         loadChildren: () => import('./page/cart/cart.module').then( m => m.CartPageModule)
       },
+      {
+        path: 'order',
+        loadChildren: () => import('./modal/order/order.module').then( m => m.OrderPageModule)
+      },
+      {
+        path: 'login',
+        loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
+      }
     ]
-  },  {
-    path: 'order',
-    loadChildren: () => import('./modal/order/order.module').then( m => m.OrderPageModule)
-  }
+  },
 
   
 

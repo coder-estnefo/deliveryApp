@@ -1,11 +1,21 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>order</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="dismiss()">
-    close
-  </ion-button>
+  <div class="map-section">
+
+  </div>
+  <div>
+    <ion-button color="light" (click)="order()">
+      Place Order
+    </ion-button>
+  </div>
 </ion-content>

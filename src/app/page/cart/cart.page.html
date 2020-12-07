@@ -34,6 +34,13 @@
       </div>
     </div> -->
 
+    <div *ngIf="cartList.length == 0">
+      No Items in Cart
+      <ion-button expand="full" color="light" routerLink="/home/items">
+        Continue Shopping
+      </ion-button>
+    </div>
+
     <div class="item ion-padding-bottom" *ngFor="let item of cartList">
       <div class="image">
         <ion-card class="card-img">
@@ -57,9 +64,11 @@
       </div>
     </div>
     
-    <ion-button expand="full" color="light" (click)="order()">
-      Place Order R9.99
-    </ion-button>
+    <div *ngIf="cartList.length > 0">
+      <ion-button expand="full" color="light" (click)="order()">
+        Place Order {{cartService.getCartPrice()}}
+      </ion-button>
+    </div>
 
   </div>
 

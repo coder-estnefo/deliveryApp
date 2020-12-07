@@ -24,7 +24,8 @@ export class LoginService {
   login(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       console.log('logged in');
-      this.getUserID();
+      this.router.navigate(['/home/items']);
+      //this.getUserID();
     }).catch(error => {
       console.log('Unable to login -> ',error);
     });
@@ -41,5 +42,6 @@ export class LoginService {
   getUserID() {
     let user = firebase.auth().currentUser;
     this.userID = user.uid;
+    return this.userID;
   }
 }
