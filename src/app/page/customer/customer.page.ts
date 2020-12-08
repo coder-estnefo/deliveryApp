@@ -13,6 +13,7 @@ export class CustomerPage implements OnInit {
   showProfile;
   showHistory;
   historyArr;
+  order_items;
 
   constructor(
     private menuController: MenuController,
@@ -25,8 +26,9 @@ export class CustomerPage implements OnInit {
 
   getHistory() {
     const userID = this.loginService.getUserID();
-    this.orderService.getOrders(userID).subscribe(item => {
-      this.historyArr = item;
+    this.orderService.getOrders(userID).subscribe(itemObj => {
+      this.historyArr = itemObj;
+      this.order_items = itemObj[0];
     });
   }
 
@@ -50,6 +52,7 @@ export class CustomerPage implements OnInit {
 
   test() {
     console.log(this.historyArr);
+    console.log(this.order_items.items);
   }
 
 }
