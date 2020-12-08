@@ -1,5 +1,5 @@
-import { getLocaleDateTimeFormat } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import  firebase  from 'firebase/app';
 import 'firebase/firestore';
 
@@ -8,7 +8,7 @@ import 'firebase/firestore';
 })
 export class OrderService {
 
-  constructor() { }
+  constructor(private firestore: AngularFirestore) { }
 
   getTime() {
     let date = new Date();
@@ -61,7 +61,7 @@ export class OrderService {
   }
 
   placeOrder(order_items, userID) {
-    firebase.firestore().collection('orders').doc(userID).collection(this.getTime()).doc().set({
+    this.firestore.collection('orders').doc('history').collection(userID).doc(this.getTime()).set({
       items: order_items,
       delivery_address: {'address': 'n/a', 'coordinates': 'n/a'}
     }).then(() => {
@@ -69,5 +69,9 @@ export class OrderService {
     }).catch(error => {
       console.log('failure=>', error);
     });
+  }
+
+  getOrders(userID) {
+    return this.firestore.collection(`orders/history/${userID}`).valueChanges();
   }
 }

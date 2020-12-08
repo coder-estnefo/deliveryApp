@@ -48,6 +48,9 @@
     </div>
     
     <div *ngIf="cartList.length > 0">
+      <ion-button expand="full" color="light" (click)="clear()">
+        <ion-icon name="trash-outline"></ion-icon>Clear Items
+      </ion-button>
       <ion-button expand="full" color="light" (click)="order()">
         Place Order R{{cartService.getCartPrice()}}
       </ion-button>

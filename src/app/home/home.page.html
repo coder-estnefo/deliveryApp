@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-searchbar></ion-searchbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-searchbar></ion-searchbar> -->
   </ion-toolbar>
 </ion-header>
 
@@ -42,8 +45,28 @@
   </div>
 
   <div>
-    <ion-title class="headings">Categories<span class="expand">See more...</span></ion-title>
-    
+    <ion-title class="headings">
+      Categories<span class="expand" routerLink="/shop/items">See more...</span>
+    </ion-title>
   </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="image">
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="image">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="image">
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   
 </ion-content>

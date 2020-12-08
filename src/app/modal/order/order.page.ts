@@ -49,6 +49,7 @@ export class OrderPage implements OnInit {
     const cartItems = this.cartService.getCartItems();
     const userID = this.loginSerive.getUserID();
     this.orderService.placeOrder(cartItems, userID);
+    this.cartService.clearCart();
   }
 
   //

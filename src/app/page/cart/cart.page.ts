@@ -33,6 +33,10 @@ export class CartPage implements OnInit {
     this.presentModal();
   }
 
+  clear() {
+    this.cartService.clearCart();
+  }
+
   addItem(item) {
     this.cartService.addToCart(item);
   }

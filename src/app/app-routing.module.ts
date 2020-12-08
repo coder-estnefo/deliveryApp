@@ -41,8 +41,18 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
       },
+      {
+        path: 'customer',
+        loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule)
+      },
     ]
+  },  {
+    path: 'customer-menu',
+    loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
   },
+
+  
+
   // {
   //   path: 'shop',
   //   loadChildren: () => import('./page/shop/shop.module').then( m => m.ShopPageModule)
