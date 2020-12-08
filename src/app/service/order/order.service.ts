@@ -62,6 +62,7 @@ export class OrderService {
 
   placeOrder(order_items, userID) {
     this.firestore.collection('orders').doc('history').collection(userID).doc(this.getTime()).set({
+      order_no: this.getTime(),
       items: order_items,
       delivery_address: {'address': 'n/a', 'coordinates': 'n/a'}
     }).then(() => {
