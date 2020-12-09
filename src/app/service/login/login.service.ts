@@ -9,8 +9,6 @@ import 'firebase/auth';
 })
 export class LoginService {
 
-  userID;
-
   constructor(private auth: AngularFireAuth, private router: Router) { }
 
   createUser(email, password) {
@@ -25,7 +23,6 @@ export class LoginService {
     firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
       console.log('logged in');
       this.router.navigate(['/shop/home']);
-      //this.getUserID();
     }).catch(error => {
       console.log('Unable to login -> ',error);
     });
@@ -41,7 +38,7 @@ export class LoginService {
 
   getUserID() {
     let user = firebase.auth().currentUser;
-    this.userID = user.uid;
-    return this.userID;
+    let userID = user.uid;
+    return userID;
   }
 }

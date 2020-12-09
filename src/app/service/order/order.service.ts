@@ -60,11 +60,11 @@ export class OrderService {
     return dateTime;
   }
 
-  placeOrder(order_items, userID) {
+  placeOrder(userID, order_items, cartTotal, coordinates) {
     this.firestore.collection('orders').doc('history').collection(userID).doc(this.getTime()).set({
-      order_no: this.getTime(),
-      items: order_items,
-      delivery_address: {'address': 'n/a', 'coordinates': 'n/a'}
+      order: {order_no: this.getTime(), order_total: cartTotal},
+      location: coordinates,
+      items: order_items
     }).then(() => {
       console.log('success');
     }).catch(error => {

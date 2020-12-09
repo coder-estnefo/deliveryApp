@@ -12,18 +12,23 @@
 <ion-content>
   <div class="map-section">
 
-    <ion-searchbar (input)="search($event)" (change)="addressCheck($event)"  
+    <!-- <ion-searchbar (input)="search($event)" (change)="addressCheck($event)"  
                     [value]="selectedAddress">
     </ion-searchbar>
 
     <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)" >
       {{ address}}
-    </ion-item>
+    </ion-item> -->
+
+    <div id='map' style='width: 100%; height: 100%;'></div>
 
   </div>
   <div>
-    <ion-button color="light" (click)="order()">
+    <ion-button *ngIf="orderOk == true" color="light" (click)="order()">
       Place Order
+    </ion-button>
+    <ion-button color="light" (click)="locate()">
+      locate address
     </ion-button>
   </div>
 </ion-content>

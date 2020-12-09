@@ -64,50 +64,29 @@
     </ion-button>
   </div>
 
-  <ion-button (click)="test()">
-    tests
-  </ion-button>
-
   <div *ngIf="showHistory" class="history">
     <ion-text detail>Order History</ion-text>
 
-    <ion-item-group>
-      <ion-item-divider *ngFor="let order of historyArr">
-        <ion-label>{{order.order_no}} - total</ion-label>
-      </ion-item-divider>
-    
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-        <ion-label>
-          <h3>item</h3>
-          <p>desc</p>
-          <p>price</p>
-        </ion-label>
-      </ion-item>
-    </ion-item-group>
-    
-    <!-- <ion-item-group>
-      <ion-item-divider>
-        <ion-label>Order ID - total</ion-label>
-      </ion-item-divider>
-    
-      <ion-item>
-        <ion-thumbnail slot="start">
-          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-        </ion-thumbnail>
-        <ion-label>
-          <h3>Item Thumbnail</h3>
-          <p>desc</p>
-          <p>0.00</p>
-        </ion-label>
-      </ion-item>
-    </ion-item-group> -->
-    
+    <div *ngFor="let currentOrder of historyArr">
+      <ion-item-group>
+        <ion-item-divider>
+          <ion-label>{{currentOrder.order.order_no}} - R{{currentOrder.order.order_total}}</ion-label>
+        </ion-item-divider>
+      
+        <ion-item *ngFor="let currentItem of currentOrder.items">
+          <ion-thumbnail slot="start">
+            <img [src]="currentItem.image">
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{currentItem.name}} x {{currentItem.quantity}}</h3>
+            <p>{{currentItem.desc}}</p>
+            <p>R {{currentItem.price}} each</p>
+            <p>Total: R {{currentItem.total_price}}</p>
+          </ion-label>
+        </ion-item>
+      </ion-item-group>
+    </div>
     
   </div>
-
-
 
 </ion-content>
