@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { ModalController, ToastController } from '@ionic/angular';
 import { on } from 'process';
 import { CartService } from 'src/app/service/cart/cart.service';
 import { LoginService } from 'src/app/service/login/login.service';
@@ -16,14 +17,16 @@ declare var mapboxgl;
 export class OrderPage implements OnInit {
 
   coords;
-  orderOk = false;
+  btnOrder = true;
 
   constructor(
     public modalController: ModalController,
     private loginSerive: LoginService,
     public cartService: CartService,
     private orderService: OrderService,
-    private mapboxService: MapboxService
+    private mapboxService: MapboxService,
+    private router: Router,
+    public toastController: ToastController
   ) { }
 
   ngOnInit() {
@@ -63,7 +66,7 @@ export class OrderPage implements OnInit {
       
     });
 
-    this.orderOk = true;
+    this.btnOrder = false;
 
   }
 
@@ -79,7 +82,18 @@ export class OrderPage implements OnInit {
     const userID = this.loginSerive.getUserID();
     this.orderService.placeOrder(userID, cartItems, cartTotalPrice, this.coords);
     this.cartService.clearCart();
-    this.orderOk = false;
+    this.btnOrder = true;
+    this.dismiss();
+    this.presentToast();
+
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Your order was successfull',
+      duration: 5000
+    });
+    toast.present();
   }
 
 }

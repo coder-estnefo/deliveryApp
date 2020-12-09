@@ -24,7 +24,10 @@
 
     <ion-button color="light" expand="full" (click)="login(loginForm)"
       [disabled]="loginForm.invalid">
-      Login
+      Login 
+      <span *ngIf="click">
+        <ion-spinner name="circles"></ion-spinner>
+      </span>
     </ion-button>
   </form>
 

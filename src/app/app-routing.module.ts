@@ -47,10 +47,10 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: 'customer-menu',
-    loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
-  },
+  // {
+  //   path: 'customer-menu',
+  //   loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
+  // },
 
   
 

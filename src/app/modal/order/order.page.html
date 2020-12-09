@@ -24,11 +24,11 @@
 
   </div>
   <div>
-    <ion-button *ngIf="orderOk == true" color="light" (click)="order()">
-      Place Order
-    </ion-button>
     <ion-button color="light" (click)="locate()">
-      locate address
+      <ion-icon name="locate-outline"></ion-icon>Locate Address
+    </ion-button>
+    <ion-button [disabled]="btnOrder" color="light" (click)="order()">
+      <ion-icon name="card-outline"></ion-icon>Place Order
     </ion-button>
   </div>
 </ion-content>

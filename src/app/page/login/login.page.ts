@@ -30,6 +30,11 @@ export class LoginPage implements OnInit {
     let email = form.value.email;
     let password = form.value.password;
     this.loginService.login(email, password);
+    let rs = this.loginService.loginStatus();
+
+    if(rs == 0) {
+      this.alert = 'Incorrect Details';
+    }
   }
 
 }
