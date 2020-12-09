@@ -10,7 +10,7 @@ const routes: Routes = [
     // redirectTo: 'home',
     // pathMatch: 'full'
     path: '',
-    redirectTo: 'shop',
+    redirectTo: 'shop/home',
     pathMatch: 'full'
   },
   {
@@ -46,7 +46,8 @@ const routes: Routes = [
         loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule)
       },
     ]
-  },  {
+  },
+  {
     path: 'customer-menu',
     loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
   },
