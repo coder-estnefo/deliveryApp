@@ -29,39 +29,39 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Customer</ion-title>
+    <ion-buttons slot="end" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <div *ngIf="showProfile" class="personal">
-    <div>
-      <ion-text class="personal-heading">Profile</ion-text>
+    <div *ngFor="let detail of profileDetails" class="ion-text-capitalize">
+      <div>
+        <ion-text class="personal-heading">Profile</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-label position="fixed">Name</ion-label>
+        <ion-input [value]="detail.name" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="fixed">Surname</ion-label>
+        <ion-input [value]="detail.surname" readonly></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="fixed">Email</ion-label>
+        <ion-input [value]="detail.email" readonly></ion-input>
+      </ion-item>
+
+      <ion-button expand="full" color="light">
+        Update
+      </ion-button>
     </div>
-
-    <ion-item>
-      <ion-label position="fixed">Title</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="fixed">Name</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="fixed">Surname</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label position="fixed">Email</ion-label>
-      <ion-input readonly>email</ion-input>
-    </ion-item>
-
-    <ion-button expand="full" color="light">
-      Update
-    </ion-button>
   </div>
 
   <div *ngIf="showHistory" class="history">

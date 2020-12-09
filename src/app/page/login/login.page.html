@@ -14,12 +14,12 @@
 
     <ion-item>
       <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email"></ion-input>
+      <ion-input formControlName="email" required></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input type="password" formControlName="password" required></ion-input>
     </ion-item>
 
     <ion-button color="light" expand="full" (click)="login(loginForm)"
@@ -27,9 +27,5 @@
       Login
     </ion-button>
   </form>
-
-  <ion-button (click)="logoutT()">
-    Logout T
-  </ion-button>
 
 </ion-content>

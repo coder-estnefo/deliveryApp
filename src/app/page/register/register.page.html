@@ -4,44 +4,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
-  <!-- <ion-button (click)="register('ofentsemasita@outlook.com', 'testing')">
-    register
-  </ion-button>
-
-  <ion-button (click)="login('ofentsemasita@outlook.com', 'testing')">
-    login
-  </ion-button>
-
-  <ion-button (click)="logout()">
-    logout
-  </ion-button>
-
-  <ion-button (click)="getUser()">
-    id
-  </ion-button>
-
-  <hr>
-
-  <ion-button color="light" (click)="register('ofentsemasita@gmail.com', 'testing')">
-    register
-  </ion-button>
-
-  <ion-button color="light" (click)="login('ofentsemasita@gmail.com', 'testing')">
-    login
-  </ion-button>
-
-  <ion-button color="light" (click)="logout()">
-    logout
-  </ion-button>
-
-  <ion-button color="light" (click)="getUser()">
-    id
-  </ion-button> -->
-
+<ion-content class="ion-padding">
   
+  <form [formGroup]="registerForm">
+    
+    <div>
+      <ion-text class="alert">{{alert}}</ion-text>
+    </div>
 
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input formControlName="name" pattern="[a-zA-Z]{3,32}" 
+                 title="Alphabets only" required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Surname</ion-label>
+      <ion-input formControlName="surname" pattern="[a-zA-Z]{3,32}" 
+                  title="Alphabets only"  required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            required>
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="password" pattern=".{6,}" 
+                  title="Password must be 6 or more characters"  required>
+      </ion-input>
+    </ion-item>
+
+    <ion-button color="light" expand="full" (click)="register(registerForm)"
+      [disabled]="registerForm.invalid">
+      Register
+    </ion-button>
+  </form>
 
 
 </ion-content>

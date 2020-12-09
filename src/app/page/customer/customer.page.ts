@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
+import { CustomerService } from 'src/app/service/customer/customer.service';
 import { LoginService } from 'src/app/service/login/login.service';
 import { OrderService } from 'src/app/service/order/order.service';
 
@@ -13,11 +14,13 @@ export class CustomerPage implements OnInit {
   showProfile;
   showHistory;
   historyArr;
+  profileDetails;
 
   constructor(
     private menuController: MenuController,
     private loginService: LoginService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private customerService: CustomerService
   ) { }
 
   ngOnInit() {
@@ -30,6 +33,13 @@ export class CustomerPage implements OnInit {
     });
   }
 
+  getProfile() {
+    const userID = this.loginService.getUserID();
+    this.customerService.getUserDetails(userID).subscribe(details => {
+      this.profileDetails = details;
+    })
+  }
+
   closeMenu() {
     this.menuController.close('customerMenu');
   }
@@ -37,6 +47,7 @@ export class CustomerPage implements OnInit {
   profile() {
     this.showProfile = true;
     this.showHistory = false;
+    this.getProfile();
     this.closeMenu();
   }
 
@@ -45,5 +56,9 @@ export class CustomerPage implements OnInit {
     this.showProfile = false;
     this.getHistory();
     this.closeMenu();
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 }

@@ -32,8 +32,4 @@ export class LoginPage implements OnInit {
     this.loginService.login(email, password);
   }
 
-  logoutT(){
-    this.loginService.logout();
-  }
-
 }
