@@ -26,7 +26,31 @@
   background: honeydew;
 }
 
-.image {
+.image-box {
+  width: 50%;
+  height: 200px;
+  background: grey;
+  
+  .img {
+    height: 200px;
+  }
+}
+
+#slot1 {
+  float: left;
+  width: 100%;
+  height: 200px;
+  background: grey;
+}
+
+#slot2 {
+  
+  width: 100%;
+  height: 200px;
+  background: rgb(41, 23, 23);
+}
+
+#slot3 {
   height: 200px;
   background: grey;
 }

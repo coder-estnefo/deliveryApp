@@ -27,8 +27,8 @@ export class ItemsPage implements OnInit {
   }
 
   getItems() {
-    this.itemService.getItems().subscribe(item => {
-      this.itemsList = item;
+    this.itemService.getItems().subscribe(items => {
+      this.itemsList = items;
     });
   }
 
@@ -40,6 +40,12 @@ export class ItemsPage implements OnInit {
   deleteItem(item) {
     this.cartService.removeItems(item);
     this.cartCount = this.cartService.getCartCount();
+  }
+
+  filter(key) {
+    this.itemService.getFilteredItems(key).subscribe(items => {
+      this.itemsList = items;
+    })
   }
 
 }

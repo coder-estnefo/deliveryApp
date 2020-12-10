@@ -27,6 +27,14 @@ export class ItemService {
     return this.firestore.collection<Item>('items').valueChanges();
   }
 
+  getFilteredItems(key) {
+    return this.firestore.collection<Item>('items', ref => ref.where('name', '==',key)).valueChanges();
+  }
+
+  getHomeItems() {
+    return this.firestore.collection<Item>('items', ref => ref.limit(3)).valueChanges();
+  }
+
   uploadFile(event) {
     let file = event.target.files[0];
     let fileName = file.name;

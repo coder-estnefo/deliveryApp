@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ItemService } from '../service/item/item.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,22 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  itemList;
+  
+  constructor(public itemService: ItemService) {
+    this.getItems();
+    this.test();
+  }
+
+  getItems() {
+    this.itemService.getHomeItems().subscribe(items => {
+      this.itemList = items;
+    });
+  }
+
+  test() {
+    this.getItems();
+    console.log(this.itemList);
+  }
 
 }
