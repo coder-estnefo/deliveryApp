@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { ShopPage } from './page/shop/shop.page';
+import { redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['shop/login']);
 
 const routes: Routes = [
  
@@ -43,7 +46,8 @@ const routes: Routes = [
       },
       {
         path: 'customer',
-        loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule)
+        loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule),
+        ...canActivate(redirectUnauthorizedToLogin)
       },
     ]
   },

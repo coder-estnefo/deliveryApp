@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { CustomerService } from 'src/app/service/customer/customer.service';
 import { LoginService } from 'src/app/service/login/login.service';
@@ -20,10 +22,17 @@ export class CustomerPage implements OnInit {
     private menuController: MenuController,
     private loginService: LoginService,
     private orderService: OrderService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private auth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    // this.auth.user.subscribe(user => {
+    //   if(!user) {
+    //     this.router.navigate(['/shop/login']);
+    //   }
+    // });
   }
 
   getHistory() {
@@ -60,5 +69,6 @@ export class CustomerPage implements OnInit {
 
   logout() {
     this.loginService.logout();
+    this.router.navigate(['/shop/home']);
   }
 }

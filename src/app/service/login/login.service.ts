@@ -37,10 +37,6 @@ export class LoginService {
     });
   }
 
-  loginStatus() {
-    return 0;
-  }
-
   logout() {
     firebase.auth().signOut().then(() => {
       //console.log('logged out');

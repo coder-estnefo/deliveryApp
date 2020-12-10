@@ -13,56 +13,47 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true" scroll-x="true" scroll-y="true">
-  <div class="sideway-scroll">
-    <div class="cat">
-      <ion-button shape="round" color="light">
-        All
-      </ion-button>
+<ion-content>
+  <div class="background">
+    <div class="sideway-scroll">
+      <div class="cat">
+        <ion-button shape="round" color="light">
+          All
+        </ion-button>
+      </div>
+
+      <div class="cat" *ngFor="let food of itemsList">
+        <ion-button shape="round" color="light">
+          {{food.name}}
+        </ion-button>
+      </div>
     </div>
 
-    <div class="cat" *ngFor="let food of itemsList">
-      <ion-button shape="round" color="light">
-        {{food.name}}
-      </ion-button>
-    </div>
+    <ion-grid>
+      <ion-row *ngFor="let item of itemsList">
+        <ion-col>
+          <ion-card class="item">
+            <div class="image-box">
+              <ion-img [src]="item.image"></ion-img>
+            </div>
+            <div class="item-info">
+              <ion-text class="item-title">{{item.name}}</ion-text><br>
+              <ion-text class="item-desc">{{item.description}}</ion-text><br>
+              <ion-text class="item-price">R{{item.price}}</ion-text>
+            </div>
+            <div class="item-buttons">
+              <ion-button shape="round" size="small" color="light" (click)="addItem(item)">
+                <ion-icon name="add-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-button shape="round" size="small" color="light" (click)="deleteItem(item)">
+                <ion-icon name="trash-outline"></ion-icon>
+              </ion-button>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
   </div>
-
-  <ion-grid>
-    <ion-row *ngFor="let item of itemsList">
-      <ion-col>
-        <ion-card class="item">
-          <div class="image-box">
-            <ion-img [src]="item.image"></ion-img>
-          </div>
-          <div class="item-info">
-            <ion-text class="item-title">{{item.name}}</ion-text><br>
-            <ion-text class="item-desc">{{item.description}}</ion-text><br>
-            <ion-text class="item-price">R{{item.price}}</ion-text>
-          </div>
-          <div class="item-buttons">
-            <ion-button shape="round" size="small" color="light" (click)="addItem(item)">
-              <ion-icon name="add-circle-outline"></ion-icon>
-            </ion-button>
-            <ion-button shape="round" size="small" color="light" (click)="deleteItem(item)">
-              <ion-icon name="trash-outline"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    
-  </ion-grid>
-
-
-
-  <!-- <ion-tabs>
-    <ion-tab-bar slot="bottom" color="light">
-      <ion-tab-button tab="/home/cart">
-        <ion-icon name="cart-outline"></ion-icon>
-        <ion-label>Cart</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs> -->
 
 </ion-content>

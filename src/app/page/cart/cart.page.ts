@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { OrderPage } from 'src/app/modal/order/order.page';
 import { CartService } from 'src/app/service/cart/cart.service';
@@ -14,7 +16,9 @@ export class CartPage implements OnInit {
 
   constructor(
     public modalController: ModalController,
-    public cartService: CartService
+    public cartService: CartService,
+    private auth: AngularFireAuth,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -30,7 +34,13 @@ export class CartPage implements OnInit {
   }
 
   order() {
-    this.presentModal();
+    this.auth.user.subscribe(user => {
+      if(user){
+        this.presentModal();
+      } else {
+        this.router.navigate(['/shop/login']);
+      }
+    });
   }
 
   clear() {

@@ -15,6 +15,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { ShopPage } from './page/shop/shop.page';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, ShopPage],
@@ -23,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
             AngularFireModule.initializeApp(environment.firebaseConfig),
             AngularFirestoreModule,
             AngularFireStorageModule,
-            HttpClientModule
+            HttpClientModule,
+            FormsModule,
+            ReactiveFormsModule
           ],
   providers: [
     StatusBar,

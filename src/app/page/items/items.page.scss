@@ -2,7 +2,6 @@
     overflow-y: hidden;
     overflow-x: scroll;
     white-space: nowrap;
-    margin: 10px;
 }
   
 .cat {
@@ -46,4 +45,9 @@
 
 .item-buttons {
     padding-left: 10px;
+}
+
+.background {
+    margin: 0;
+    background-color: rgba(228, 222, 227, 0.397);
 }
