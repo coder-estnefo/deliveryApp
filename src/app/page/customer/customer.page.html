@@ -1,7 +1,7 @@
 <ion-menu side="start" menuId="customerMenu" contentId="main">
   <ion-header>
-    <ion-toolbar color="primary" color="light">
-      <ion-title>User Menu</ion-title>
+    <ion-toolbar color="secondary">
+      <ion-title>User</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="closeMenu()">
           <ion-icon name="close-circle-outline"></ion-icon>
@@ -27,18 +27,18 @@
 <ion-router-outlet id="main"></ion-router-outlet>
 
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Customer</ion-title>
+    <ion-title class="name">Customer</ion-title>
     <ion-buttons slot="end" (click)="logout()">
-      <ion-icon name="log-out-outline"></ion-icon>
+      <ion-icon size="large" name="log-out-outline"></ion-icon>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="primary">
 
   <div *ngIf="showProfile" class="personal">
     <div *ngFor="let detail of profileDetails" class="ion-text-capitalize">
@@ -47,28 +47,26 @@
       </div>
 
       <ion-item>
-        <ion-label position="fixed">Name</ion-label>
+        <ion-label position="stacked">Name</ion-label>
         <ion-input [value]="detail.name" readonly></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label position="fixed">Surname</ion-label>
+        <ion-label position="stacked">Surname</ion-label>
         <ion-input [value]="detail.surname" readonly></ion-input>
       </ion-item>
+      
 
       <ion-item>
-        <ion-label position="fixed">Email</ion-label>
+        <ion-label position="stacked">Email</ion-label>
         <ion-input [value]="detail.email" readonly></ion-input>
       </ion-item>
 
-      <ion-button expand="full" color="light">
-        Update
-      </ion-button>
     </div>
   </div>
 
   <div *ngIf="showHistory" class="history">
-    <ion-text detail>Order History</ion-text>
+    <ion-text class="personal-heading">Order History</ion-text>
 
     <div *ngFor="let currentOrder of historyArr">
       <ion-item-group>

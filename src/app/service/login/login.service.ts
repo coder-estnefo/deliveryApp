@@ -22,9 +22,11 @@ export class LoginService {
       let id = this.getUserID();
       console.log(id);
       this.customerService.setUser(id,name, surname, email);
-      this.router.navigate(['/shop/login']);
+      //this.router.navigate(['/shop/login']);
+      this.router.navigate(['/shop/customer']);
     }).catch(error => {
       //console.log('error ->',error);
+      alert('registration failed')
     });
   }
 
@@ -34,6 +36,7 @@ export class LoginService {
       this.router.navigate(['/shop/home']);
     }).catch(error => {
       //console.log('Unable to login -> ',error);
+      alert('login failed')
     });
   }
 

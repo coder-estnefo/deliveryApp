@@ -10,10 +10,21 @@
   width: 20px;
 }
 
+.catbox {
+  display: inline;
+  width: 300px;
+}
+
 .headings {
   padding: 10px;
   font-size: 20px;
   font-weight: 600;
+}
+
+.name {
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .headings span{
@@ -53,4 +64,8 @@
 #slot3 {
   height: 200px;
   background: grey;
+}
+
+.background {
+  background-color: rgba(36, 59, 97);
 }

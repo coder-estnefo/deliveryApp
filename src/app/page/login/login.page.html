@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
+  <ion-toolbar color="secondary">
+    <ion-title class="name">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" color="primary">
 
   <form [formGroup]="loginForm">
     
@@ -22,12 +22,9 @@
       <ion-input type="password" formControlName="password" required></ion-input>
     </ion-item>
 
-    <ion-button color="light" expand="full" (click)="login(loginForm)"
+    <ion-button color="tertiary" expand="full" (click)="login(loginForm)"
       [disabled]="loginForm.invalid">
       Login 
-      <span *ngIf="click">
-        <ion-spinner name="circles"></ion-spinner>
-      </span>
     </ion-button>
   </form>
 

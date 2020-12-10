@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/shop/items"></ion-back-button>
     </ion-buttons>
-    <ion-title>Cart</ion-title>
+    <ion-title class="name">Cart</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/cart">
         <ion-icon name="cart-outline"></ion-icon>
@@ -13,12 +13,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="primary">
 
   <div class="ion-padding">
 
     <div *ngIf="cartList.length == 0">
-      <ion-button expand="full" color="light" routerLink="/shop/items">
+      <ion-button expand="full" color="tertiary" routerLink="/shop/items">
         Continue Shopping
       </ion-button>
     </div>
@@ -64,23 +64,23 @@
         <ion-text class="item-title">{{item.name}} x {{item.quantity}}</ion-text><br>
         <ion-text class="item-desc">{{item.desc}}</ion-text><br>
         <ion-text class="item-price">R{{item.price}}</ion-text><br>
-        <ion-button size="small" color="light" (click)="removeItem(item)">
+        <ion-button size="small" color="tertiary" (click)="removeItem(item)">
           <ion-icon name="remove-circle-outline"></ion-icon>
         </ion-button>
-        <ion-button size="small" color="light" (click)="addItem(item)">
+        <ion-button size="small" color="tertiary" (click)="addItem(item)">
           <ion-icon name="add-circle-outline"></ion-icon>
         </ion-button>
-        <ion-button size="small" color="light" (click)="removeItems(item)">
+        <ion-button size="small" color="tertiary" (click)="removeItems(item)">
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </div>
     </div>
     
     <div *ngIf="cartList.length > 0">
-      <ion-button expand="full" color="light" (click)="clear()">
+      <ion-button expand="full" color="tertiary" (click)="clear()">
         <ion-icon name="trash-outline"></ion-icon>Clear Items
       </ion-button>
-      <ion-button expand="full" color="light" (click)="order()">
+      <ion-button expand="full" color="tertiary" (click)="order()">
         Place Order R{{cartService.getCartPrice()}}
       </ion-button>
     </div>

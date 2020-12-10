@@ -1,10 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <!-- <ion-searchbar></ion-searchbar> -->
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="end">
+      <ion-icon size="large" name="fast-food-outline"></ion-icon>
+    </ion-buttons>
+    <ion-title class="name">The Bite</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="primary">
   <!-- <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Home</ion-title>
@@ -12,39 +15,35 @@
   </ion-header> -->
 
   <div>
-    <ion-title class="headings">Categories</ion-title>
+    <ion-title class="headings">Food</ion-title>
   </div>
   
   <div class="sideway-scroll">
     <div class="cat">
-      <ion-button shape="round" color="light" (click)="test()">
-        00
+      <ion-button shape="round" color="tertiary" routerLink="/shop/items">
+        All
       </ion-button>
-      <ion-button shape="round" color="light">
-        00
-      </ion-button>
-      <ion-button shape="round" color="light">
-        00
-      </ion-button>
-      <ion-button shape="round" color="light">
-        00
-      </ion-button>
-      <ion-button shape="round" color="light">
-        00
-      </ion-button>
-      <ion-button shape="round" color="light">
-        00
-      </ion-button>
-      <ion-button shape="round" color="light">
-        00
+    </div>
+
+    <div class="cat" *ngFor="let food of itemList">
+      <ion-button shape="round" color="tertiary" routerLink="/shop/items">
+        {{food.name}}
       </ion-button>
     </div>
   </div>
 
   <div>
     <ion-title class="headings">
-      Categories<span class="expand" routerLink="/shop/items">See more...</span>
+      Popular<span class="expand" routerLink="/shop/items">See more...</span>
     </ion-title>
+  </div>
+
+  <div class="sideway-scroll">
+    <div class="catbox" *ngFor="let item of itemList">
+        <ion-card>
+          <ion-img [src]="item.image" style="max-width: 100%; max-height: 100%;"></ion-img>
+        </ion-card>
+    </div>
   </div>
 
   <ion-grid>

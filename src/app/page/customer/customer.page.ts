@@ -13,7 +13,7 @@ import { OrderService } from 'src/app/service/order/order.service';
 })
 export class CustomerPage implements OnInit {
 
-  showProfile;
+  showProfile = true;
   showHistory;
   historyArr;
   profileDetails;
@@ -33,6 +33,7 @@ export class CustomerPage implements OnInit {
     //     this.router.navigate(['/shop/login']);
     //   }
     // });
+    this.getProfile();
   }
 
   getHistory() {

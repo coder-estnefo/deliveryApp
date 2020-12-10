@@ -1,9 +1,9 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title class="item-title">Items</ion-title>
+    <ion-title class="name">Items</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/cart">
         <ion-icon name="cart-outline"></ion-icon>
@@ -13,16 +13,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="primary">
   <div class="sideway-scroll">
     <div class="cat">
-      <ion-button shape="round" color="light" (click)="getItems()">
+      <ion-button shape="round" color="tertiary" (click)="getItems()">
         All
       </ion-button>
     </div>
 
     <div class="cat" *ngFor="let food of itemsList">
-      <ion-button shape="round" color="light" (click)="filter(food.name)">
+      <ion-button shape="round" color="tertiary" (click)="filter(food.name)">
         {{food.name}}
       </ion-button>
     </div>
@@ -31,7 +31,7 @@
   <ion-grid>
     <ion-row *ngFor="let item of itemsList">
       <ion-col>
-        <ion-card class="item" color="light">
+        <ion-card class="item" color="secondary">
           <div class="image-box">
             <ion-img [src]="item.image"></ion-img>
           </div>
@@ -41,10 +41,10 @@
             <ion-text class="item-price">R{{item.price}}</ion-text>
           </div>
           <div class="item-buttons">
-            <ion-button shape="round" size="small" color="light" (click)="addItem(item)">
+            <ion-button shape="round" size="small" color="tertiary" (click)="addItem(item)">
               <ion-icon name="add-circle-outline"></ion-icon>
             </ion-button>
-            <ion-button shape="round" size="small" color="light" (click)="deleteItem(item)">
+            <ion-button shape="round" size="small" color="tertiary" (click)="deleteItem(item)">
               <ion-icon name="trash-outline"></ion-icon>
             </ion-button>
           </div>
