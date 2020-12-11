@@ -23,18 +23,13 @@
     <div id='map' style='width: 100%; height: 100%;'></div>
 
   </div>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-button color="tertiary" (click)="locate()">
-          <ion-icon name="locate-outline"></ion-icon>Locate Address
-        </ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button [disabled]="btnOrder" color="tertiary" (click)="order()">
-          <ion-icon name="card-outline"></ion-icon>Place Order
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+  <div>
+    <ion-button color="tertiary" (click)="locate()">
+      <ion-icon name="locate-outline"></ion-icon>Locate Address
+    </ion-button>
+    <ion-button  [disabled]="btnOrder" color="tertiary" (click)="order()">
+      <ion-icon name="card-outline"></ion-icon>Place Order
+    </ion-button>
+  </div>
 </ion-content>
