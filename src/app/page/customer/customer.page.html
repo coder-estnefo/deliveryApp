@@ -71,7 +71,7 @@
     <div *ngFor="let currentOrder of historyArr">
       <ion-item-group>
         <ion-item-divider>
-          <ion-label>{{currentOrder.order.order_no}} - R{{currentOrder.order.order_total}}</ion-label>
+          <ion-label>#{{currentOrder.order.order_no}} - R{{currentOrder.order.order_total}}</ion-label>
         </ion-item-divider>
       
         <ion-item *ngFor="let currentItem of currentOrder.items">

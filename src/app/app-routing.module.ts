@@ -49,8 +49,14 @@ const routes: Routes = [
         loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule),
         ...canActivate(redirectUnauthorizedToLogin)
       },
+      {
+        path: 'admin',
+        loadChildren: () => import('./page/admin/admin.module').then( m => m.AdminPageModule),
+        ...canActivate(redirectUnauthorizedToLogin)
+      },
     ]
   },
+
   // {
   //   path: 'customer-menu',
   //   loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)

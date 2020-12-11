@@ -1,0 +1,79 @@
+<ion-menu side="start" menuId="adminMenu" contentId="main">
+  <ion-header>
+    <ion-toolbar color="secondary">
+      <ion-title>Admin</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeMenu()">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item detail>
+        <ion-icon name="add-outline"></ion-icon>Add Item
+      </ion-item>
+      <ion-item (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>Logout
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main"></ion-router-outlet>
+
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="name">Admin</ion-title>
+    <ion-buttons slot="end" (click)="logout()">
+      <ion-icon size="large" name="log-out-outline"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="primary">
+
+  <div class="box">
+    <div>
+      <div>
+        <ion-text>Add Item</ion-text>
+      </div>
+
+      <form [formGroup]="addForm">
+        <ion-item>
+          <ion-label position="stacked">Item</ion-label>
+          <ion-input formControlName="item" pattern="[a-zA-Z\s]+" placeholder="e.g Bread"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Description</ion-label>
+          <ion-input formControlName="description" pattern="[a-zA-Z\s]+" placeholder="e.g whole wheat bread"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label position="stacked">Price</ion-label>
+          <ion-input formControlName="price" type="number" min="1.00" step="0.01" placeholder="e.g 12.99"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <input formControlName="img" type="file" (change)="uploadFile($event)">
+        </ion-item>
+        <ion-item>
+          <ion-progress-bar color="primary" value="{{uploadPercent | async}}"></ion-progress-bar>
+        </ion-item>
+
+        <ion-button color="tertiary" expand="full" (click)="uploadItem(addForm)"
+              [disabled]="addForm.invalid">
+          Add
+        </ion-button>
+
+      </form>
+
+    </div>
+  </div>
+
+</ion-content>
