@@ -42,9 +42,7 @@
 
   <ion-card *ngIf="showAdd == true" class="section">
     <div>
-      <div>
-        <ion-text>Add Item</ion-text>
-      </div>
+      <h3>Add Item</h3>
 
       <form [formGroup]="addForm">
         <ion-item>
@@ -80,7 +78,7 @@
   </ion-card>
 
   <ion-card *ngIf="showView == true" class="section">
-      <ion-title>View Items</ion-title>
+      <h3>View Items</h3>
 
       <div>
         <ion-item *ngFor="let item of itemsList">
@@ -92,7 +90,7 @@
             <p>{{item.description}}</p>
             <p>R {{item.price}}</p>
             <p>
-              <ion-button color="tertiary">
+              <ion-button color="tertiary" (click)="deleteItem(item.no, item.image)">
                 <ion-icon name="trash-outline"></ion-icon>Delete Item
               </ion-button>
             </p>

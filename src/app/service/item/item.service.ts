@@ -71,11 +71,17 @@ export class ItemService {
     })
   }
 
-  updateItem() {
+  deleteItem(no, url) {
 
+    this.firestore.collection('items').ref.where('no', '==', no).get().then(snapshot => {
+      snapshot.forEach(doc => {
+        this.firestore.collection('items').doc(doc.id).delete();
+        //this.storage.refFromURL(url).delete();
+      });
+    }).catch(err => {
+      console.log(err)
+    });
   }
 
-  deleteItem() {
-    
-  }
+  
 }

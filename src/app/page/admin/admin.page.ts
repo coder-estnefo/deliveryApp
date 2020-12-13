@@ -133,4 +133,8 @@ export class AdminPage implements OnInit {
 
   }
 
+  deleteItem(no, url) {
+    this.itemService.deleteItem(no, url);
+  }
+
 }
