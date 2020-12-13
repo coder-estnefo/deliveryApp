@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
+import { ItemService } from 'src/app/service/item/item.service';
 import { LoginService } from 'src/app/service/login/login.service';
 
 @Component({
@@ -21,13 +22,17 @@ export class AdminPage implements OnInit {
   
   addForm;
 
+  showAdd = false;
+  showView = false;
+
   constructor(
     public menuController: MenuController,
     private loginService: LoginService,
     private router: Router,
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private itemService: ItemService
   ) { }
 
   ngOnInit() {
@@ -39,6 +44,18 @@ export class AdminPage implements OnInit {
     });
 
     this.getItems();
+  }
+
+  openAddItem() {
+    this.showAdd = true;
+    this.showView = false;
+    this.closeMenu();
+  }
+
+  openViewItems() {
+    this.showView = true;
+    this.showAdd = false;
+    this.closeMenu();
   }
 
   closeMenu() {

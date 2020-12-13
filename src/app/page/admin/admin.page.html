@@ -11,8 +11,11 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item detail>
+      <ion-item (click)="openAddItem()" detail>
         <ion-icon name="add-outline"></ion-icon>Add Item
+      </ion-item>
+      <ion-item (click)="openViewItems()" detail>
+        <ion-icon name="bar-chart-outline"></ion-icon>View Items
       </ion-item>
       <ion-item (click)="logout()">
         <ion-icon name="log-out-outline"></ion-icon>Logout
@@ -37,7 +40,7 @@
 
 <ion-content color="primary">
 
-  <div class="section">
+  <ion-card *ngIf="showAdd == true" class="section">
     <div>
       <div>
         <ion-text>Add Item</ion-text>
@@ -74,14 +77,29 @@
       </form>
 
     </div>
-  </div>
+  </ion-card>
 
-  <div class="section">
-    <div>
+  <ion-card *ngIf="showView == true" class="section">
+      <ion-title>View Items</ion-title>
 
-      <ion-title></ion-title>
+      <div>
+        <ion-item *ngFor="let item of itemsList">
+          <ion-thumbnail slot="start">
+            <img [src]="item.image">
+          </ion-thumbnail>
+          <ion-label>
+            <h3>{{item.name}}</h3>
+            <p>{{item.description}}</p>
+            <p>R {{item.price}}</p>
+            <p>
+              <ion-button color="tertiary">
+                <ion-icon name="trash-outline"></ion-icon>Delete Item
+              </ion-button>
+            </p>
+          </ion-label>
+        </ion-item>
 
-    </div>
-  </div>
+      </div>
+  </ion-card>
 
 </ion-content>

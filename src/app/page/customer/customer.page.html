@@ -40,7 +40,7 @@
 
 <ion-content color="primary">
 
-  <div *ngIf="showProfile" class="personal">
+  <ion-card *ngIf="showProfile" class="personal">
     <div *ngFor="let detail of profileDetails" class="ion-text-capitalize">
       <div>
         <ion-text class="personal-heading">Profile</ion-text>
@@ -63,9 +63,10 @@
       </ion-item>
 
     </div>
-  </div>
+  </ion-card>
 
-  <div *ngIf="showHistory" class="history">
+  
+  <ion-card *ngIf="showHistory" class="history">
     <ion-text class="personal-heading">Order History</ion-text>
 
     <div *ngFor="let currentOrder of historyArr">
@@ -88,6 +89,6 @@
       </ion-item-group>
     </div>
     
-  </div>
+  </ion-card>
 
 </ion-content>
