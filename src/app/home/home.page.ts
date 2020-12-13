@@ -12,7 +12,6 @@ export class HomePage {
   
   constructor(public itemService: ItemService) {
     this.getItems();
-    this.test();
   }
 
   getItems() {
@@ -23,7 +22,6 @@ export class HomePage {
 
   test() {
     this.getItems();
-    console.log(this.itemList);
   }
 
 }

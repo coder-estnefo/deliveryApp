@@ -42,8 +42,9 @@
 
   <ion-card *ngIf="showAdd == true" class="section">
     <div>
-      <h3>Add Item</h3>
+      <ion-title class="name">Add Item</ion-title>
 
+      <ion-card>
       <form [formGroup]="addForm">
         <ion-item>
           <ion-label position="stacked">Item</ion-label>
@@ -73,14 +74,15 @@
         </ion-button>
 
       </form>
+      </ion-card>
 
     </div>
   </ion-card>
 
   <ion-card *ngIf="showView == true" class="section">
-      <h3>View Items</h3>
+    <ion-title class="name">View Items</ion-title>
 
-      <div>
+      <ion-card>
         <ion-item *ngFor="let item of itemsList">
           <ion-thumbnail slot="start">
             <img [src]="item.image">
@@ -97,7 +99,7 @@
           </ion-label>
         </ion-item>
 
-      </div>
+      </ion-card>
   </ion-card>
 
 </ion-content>

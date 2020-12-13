@@ -38,7 +38,7 @@ export class ItemsPage implements OnInit {
   }
 
   deleteItem(item) {
-    this.cartService.removeItems(item);
+    this.cartService.removeItem(item);
     this.cartCount = this.cartService.getCartCount();
   }
 

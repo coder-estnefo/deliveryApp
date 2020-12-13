@@ -28,11 +28,13 @@ export class CustomerPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.auth.user.subscribe(user => {
-    //   if(!user) {
-    //     this.router.navigate(['/shop/login']);
-    //   }
-    // });
+    this.auth.user.subscribe(user => {
+      if(user) {
+        if(user.isAnonymous) {
+          this.router.navigate(['/shop/admin']);
+        }
+      }
+    });
     this.getProfile();
   }
 

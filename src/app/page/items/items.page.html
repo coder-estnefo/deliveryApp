@@ -33,7 +33,7 @@
       <ion-col>
         <ion-card class="item" color="secondary">
           <div class="image-box">
-            <ion-img [src]="item.image"></ion-img>
+            <ion-img class="image" [src]="item.image"></ion-img>
           </div>
           <div class="item-info">
             <ion-text class="item-title">{{item.name}}</ion-text><br>
@@ -45,7 +45,7 @@
               <ion-icon name="add-circle-outline"></ion-icon>
             </ion-button>
             <ion-button shape="round" size="small" color="tertiary" (click)="deleteItem(item)">
-              <ion-icon name="trash-outline"></ion-icon>
+              <ion-icon name="remove-circle-outline"></ion-icon>
             </ion-button>
           </div>
         </ion-card>

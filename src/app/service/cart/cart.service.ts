@@ -51,7 +51,7 @@ export class CartService {
                           'image': image,'quantity': quantity, 'total_price': total_price});
     }
 
-    console.log(this.cartList);
+    //console.log(this.cartList);
   }
 
   removeItem(item) {

@@ -23,7 +23,7 @@ export class AdminPage implements OnInit {
   addForm;
 
   showAdd = false;
-  showView = false;
+  showView = true;
 
   constructor(
     public menuController: MenuController,
@@ -105,7 +105,7 @@ export class AdminPage implements OnInit {
     }).then(() => {
       //console.log("added");
       alert('Item Added');
-      this.router.navigate(['/shop/items']);
+      this.router.navigate(['/shop/admin']);
     }).catch(() => {
       //console.log("item no added");
     });
