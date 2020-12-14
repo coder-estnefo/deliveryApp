@@ -1,35 +1,40 @@
 <ion-header>
   <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-icon size="large" name="fast-food-outline"></ion-icon>
+    </ion-buttons>
     <ion-title class="name">Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding" color="primary">
 
-  <form [formGroup]="loginForm">
-    
-    <div>
-      <ion-text class="alert">{{alert}}</ion-text>
-    </div>
+  <div >
+    <form [formGroup]="loginForm">
+      
+      <div>
+        <ion-text class="alert">{{alert}}</ion-text>
+      </div>
+
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input formControlName="email" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-button color="tertiary" expand="full" (click)="login(loginForm)"
+        [disabled]="loginForm.invalid">
+        Login 
+      </ion-button>
+    </form>
 
     <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email" required></ion-input>
+      Not registered?  <a routerLink="/shop/register">Register</a>
     </ion-item>
-
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" formControlName="password" required></ion-input>
-    </ion-item>
-
-    <ion-button color="tertiary" expand="full" (click)="login(loginForm)"
-      [disabled]="loginForm.invalid">
-      Login 
-    </ion-button>
-  </form>
-
-  <ion-item>
-    Not registered?  <a routerLink="/shop/register">Register</a>
-  </ion-item>
+  </div>
 
 </ion-content>

@@ -2,12 +2,15 @@
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
+      <ion-button>
+        <ion-icon size="large" name="fast-food-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title class="name">Items</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/cart">
-        <ion-icon name="cart-outline"></ion-icon>
-        <ion-badge>{{cartService.getCartCount()}}</ion-badge>
+        <ion-icon name="cart-outline" color="tertiary"></ion-icon>
+        <ion-badge color="tertiary">{{cartService.getCartCount()}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
