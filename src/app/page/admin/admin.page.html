@@ -47,22 +47,25 @@
       <ion-card>
       <form [formGroup]="addForm">
         <ion-item>
-          <ion-label position="stacked">Item</ion-label>
+          <ion-label position="stacked"><strong>Item</strong></ion-label>
           <ion-input formControlName="item" pattern="[a-zA-Z\s]+" placeholder="e.g Bread"></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label position="stacked">Description</ion-label>
+          <ion-label position="stacked"><strong>Description</strong></ion-label>
           <ion-input formControlName="description" pattern="[a-zA-Z\s]+" placeholder="e.g whole wheat bread"></ion-input>
         </ion-item>
         
         <ion-item>
-          <ion-label position="stacked">Price</ion-label>
+          <ion-label position="stacked"><strong>Price</strong></ion-label>
           <ion-input formControlName="price" type="number" min="1.00" step="0.01" placeholder="e.g 12.99"></ion-input>
         </ion-item>
 
         <ion-item>
-          <input formControlName="img" type="file" (change)="uploadFile($event)">
+          <div class="button-wrap">
+            <label class ="new-button" for="upload-image">Choose Image</label>
+            <input formControlName="img" id="upload-image" type="file" (change)="uploadFile($event)">
+          </div>
         </ion-item>
         <ion-item>
           <ion-progress-bar color="primary" value="{{uploadPercent | async}}"></ion-progress-bar>
@@ -88,7 +91,7 @@
             <img [src]="item.image">
           </ion-thumbnail>
           <ion-label>
-            <h3>{{item.name}}</h3>
+            <h3 class="item-title">{{item.name}}</h3>
             <p>{{item.description}}</p>
             <p>R {{item.price}}</p>
             <p>

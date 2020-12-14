@@ -63,6 +63,9 @@ export class AdminPage implements OnInit {
   }
 
   logout() {
+    if(this.menuController.isOpen('adminMenu')) {
+      this.closeMenu();
+    }
     this.loginService.logout();
     this.router.navigate(['/shop/home']);
   }

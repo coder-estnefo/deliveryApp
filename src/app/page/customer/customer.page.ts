@@ -49,7 +49,7 @@ export class CustomerPage implements OnInit {
     const userID = this.loginService.getUserID();
     this.customerService.getUserDetails(userID).subscribe(details => {
       this.profileDetails = details;
-    })
+    });
   }
 
   closeMenu() {
@@ -71,6 +71,10 @@ export class CustomerPage implements OnInit {
   }
 
   logout() {
+    if(this.menuController.isOpen('customerMenu')) {
+      this.closeMenu();
+    }
+    
     this.loginService.logout();
     this.router.navigate(['/shop/home']);
   }
