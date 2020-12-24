@@ -19,13 +19,13 @@
 <ion-content color="primary">
   <div class="sideway-scroll">
     <div class="cat">
-      <ion-button shape="round" color="tertiary" (click)="getItems()">
+      <ion-button shape="round" color="tertiary" strong="true" (click)="getItems()">
         All
       </ion-button>
     </div>
 
     <div class="cat" *ngFor="let food of itemsList">
-      <ion-button shape="round" color="tertiary" (click)="filter(food.name)">
+      <ion-button shape="round" color="tertiary" strong="true" (click)="filter(food.name)">
         {{food.name}}
       </ion-button>
     </div>

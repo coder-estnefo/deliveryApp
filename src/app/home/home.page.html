@@ -20,13 +20,13 @@
   
   <div class="sideway-scroll">
     <div class="cat">
-      <ion-button shape="round" color="tertiary" routerLink="/shop/items">
+      <ion-button shape="round" color="tertiary" strong="true" routerLink="/shop/items">
         All
       </ion-button>
     </div>
 
     <div class="cat" *ngFor="let food of itemList">
-      <ion-button shape="round" color="tertiary" routerLink="/shop/items">
+      <ion-button shape="round" color="tertiary" strong="true" routerLink="/shop/items">
         {{food.name}}
       </ion-button>
     </div>
