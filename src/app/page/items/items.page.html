@@ -9,8 +9,8 @@
     <ion-title class="name">Items</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/cart">
-        <ion-icon name="cart-outline" color="tertiary"></ion-icon>
-        <ion-badge color="tertiary">{{cartService.getCartCount()}}</ion-badge>
+        <ion-icon name="cart-outline"></ion-icon>
+        <ion-badge>{{cartService.getCartCount()}}</ion-badge>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -39,7 +39,7 @@
             <ion-img class="image" [src]="item.image"></ion-img>
           </div>
           <div class="item-info">
-            <ion-text class="item-title">{{item.name}}</ion-text><br>
+            <ion-text class="item-title" color="tertiary">{{item.name}}</ion-text><br>
             <ion-text class="item-desc">{{item.description}}</ion-text><br>
             <ion-text class="item-price">R{{item.price}}</ion-text>
           </div>
