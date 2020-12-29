@@ -1,10 +1,7 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-      <ion-button>
-        <ion-icon size="large" name="fast-food-outline"></ion-icon>
-      </ion-button>
+      <ion-icon size="large" name="fast-food-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="name">Items</ion-title>
     <ion-buttons slot="end">
@@ -34,9 +31,12 @@
   <ion-grid>
     <ion-row *ngFor="let item of itemsList">
       <ion-col>
+        <!-- <div class="image-box"> -->
+          <!-- <ion-img class="image" [src]="item.image"></ion-img> -->
+        <!-- </div> -->
         <ion-card class="item" color="secondary">
           <div class="image-box">
-            <ion-img class="image" [src]="item.image"></ion-img>
+            <img class="image" [src]="item.image">
           </div>
           <div class="item-info">
             <ion-text class="item-title" color="tertiary">{{item.name}}</ion-text><br>

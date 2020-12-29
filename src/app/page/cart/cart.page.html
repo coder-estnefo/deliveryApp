@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar color="secondary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/shop/items"></ion-back-button>
+      <ion-icon size="large" name="fast-food-outline"></ion-icon>
     </ion-buttons>
     <ion-title class="name">
-      <ion-icon size="large" name="fast-food-outline"></ion-icon>Cart
+      Cart
     </ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/cart">
@@ -20,7 +20,7 @@
   <div class="ion-padding">
 
     <div *ngIf="cartList.length == 0">
-      <ion-button expand="full" color="tertiary" routerLink="/shop/items">
+      <ion-button expand="full" color="tertiary" strong="true" routerLink="/shop/items">
         Continue Shopping
       </ion-button>
     </div>
