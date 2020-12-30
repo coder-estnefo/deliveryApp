@@ -7,6 +7,9 @@ import { LoginService } from 'src/app/service/login/login.service';
 import { Feature, MapboxService } from 'src/app/service/mapbox/mapbox.service';
 import { OrderService } from 'src/app/service/order/order.service';
 
+import { Plugins } from '@capacitor/core';
+const { Geolocation } = Plugins;
+
 declare var mapboxgl;
 
 @Component({
@@ -30,6 +33,8 @@ export class OrderPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getCoords();
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
     var map = new mapboxgl.Map({
     container: 'map',
@@ -42,29 +47,60 @@ export class OrderPage implements OnInit {
       map.resize();
     })
   }
+
+  async getCoords() {
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    const coordinates = await Geolocation.getCurrentPosition(options);
+    this.coords = coordinates;
+  }
   
   locate() {
-    navigator.geolocation.getCurrentPosition((position)=>{
-      const lng = position.coords.longitude;
-      const lat = position.coords.latitude;
-      this.coords = {"lng": lng, "lat": lat};
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
-        var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [ lng, lat],
-        zoom: 14
-      });
 
-      var marker = new mapboxgl.Marker()
-        .setLngLat([ lng, lat])
-        .addTo(map);
-
-      map.on('load', () => {
-        map.resize();
-      })
+    const lng = this.coords.coords.longitude;
+    const lat = this.coords.coords.latitude;
       
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
+      var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [ lng, lat],
+      zoom: 14
     });
+
+    var marker = new mapboxgl.Marker()
+      .setLngLat([ lng, lat])
+      .addTo(map);
+
+    map.on('load', () => {
+      map.resize();
+    });
+
+    // navigator.geolocation.getCurrentPosition((position)=>{   
+    //   const lng = position.coords.longitude;
+    //   const lat = position.coords.latitude;
+    //   this.coords = {"lng": lng, "lat": lat};
+      
+    //   mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
+    //     var map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/mapbox/streets-v11',
+    //     center: [ lng, lat],
+    //     zoom: 14
+    //   });
+
+    //   var marker = new mapboxgl.Marker()
+    //     .setLngLat([ lng, lat])
+    //     .addTo(map);
+
+    //   map.on('load', () => {
+    //     map.resize();
+    //   })
+      
+    // });
 
     this.btnOrder = false;
 
@@ -91,7 +127,7 @@ export class OrderPage implements OnInit {
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your order was successfull',
-      duration: 5000
+      duration: 2000
     });
     toast.present();
   }
