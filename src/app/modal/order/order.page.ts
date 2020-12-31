@@ -56,6 +56,8 @@ export class OrderPage implements OnInit {
     };
     const coordinates = await Geolocation.getCurrentPosition(options);
     this.coords = coordinates;
+
+    //console.log(this.coords);
   }
   
   locate() {
