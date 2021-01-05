@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { ShopPageRoutingModule } from './shop-routing.module';
 
-import { ShopPage } from './shop.page';
+//import { ShopPage } from './shop.page';
 
 @NgModule({
   imports: [
@@ -16,6 +16,6 @@ import { ShopPage } from './shop.page';
     ShopPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [ShopPage]
+  declarations: [/*ShopPage*/]
 })
 export class ShopPageModule {}
