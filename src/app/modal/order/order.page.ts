@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, ToastController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { on } from 'process';
 import { CartService } from 'src/app/service/cart/cart.service';
 import { LoginService } from 'src/app/service/login/login.service';
@@ -11,6 +11,7 @@ import { Plugins } from '@capacitor/core';
 const { Geolocation } = Plugins;
 
 declare var mapboxgl;
+declare var MapboxGeocoder;
 
 @Component({
   selector: 'app-order',
@@ -18,9 +19,21 @@ declare var mapboxgl;
   styleUrls: ['./order.page.scss'],
 })
 export class OrderPage implements OnInit {
+  checkAddress ="";
 
+  delivery = false;
+  collect = true;
+  coordinates : any;
+  list : any;
+  selectedAddress : string= "";
+  lat;
+  lng;
+  addresses = [];
+
+  map;
   coords;
-  btnOrder = true;
+  marker;
+  continue = false;
 
   constructor(
     public modalController: ModalController,
@@ -29,82 +42,66 @@ export class OrderPage implements OnInit {
     private orderService: OrderService,
     private mapboxService: MapboxService,
     private router: Router,
-    public toastController: ToastController
+    public toastController: ToastController,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() {
-    this.getCoords();
-
     mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
-    var map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [28.112268, -26.270760],
     zoom: 5
     });
 
-    map.on('load', () => {
-      map.resize();
-    })
+    this.map.on('load', () => {
+      this.map.resize();
+    });
   }
 
-  async getCoords() {
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-    const coordinates = await Geolocation.getCurrentPosition(options);
-    this.coords = coordinates;
-
-    //console.log(this.coords);
+  search(event: any) {
+    const searchTerm = event.target.value.toLowerCase();
+    if (searchTerm && searchTerm.length > 0) {
+      this.mapboxService.search_word(searchTerm)
+        .subscribe((features: Feature[]) => {
+          this.coordinates = features.map(feat => feat.geometry)
+          this.addresses = features.map(feat => feat.place_name)
+          this.list = features;
+          //console.log(this.list)
+        });
+    } else {
+      this.addresses = [];
+    }
   }
-  
-  locate() {
 
-    const lng = this.coords.coords.longitude;
-    const lat = this.coords.coords.latitude;
+
+  addressCheck(event){
+    this.checkAddress = event.target.value;
+    //console.log("info",this.checkAddress);
+  }
+
+
+  onSelect(address, i) {
+    this.selectedAddress = address;
+    //  selectedcoodinates=
+
+    //console.log("lng:" + JSON.stringify(this.list[i].geometry.coordinates[0]))
+    //console.log("lat:" + JSON.stringify(this.list[i].geometry.coordinates[1]))
+    this.lng = JSON.stringify(this.list[i].geometry.coordinates[0])
+    this.lat = JSON.stringify(this.list[i].geometry.coordinates[1])
+    // this.user.coords = [this.lng,this.lat];
+    //console.log("index =" + i)
+    //console.log(this.selectedAddress)
+    // this.user.address = this.selectedAddress;
+    this.addresses = [];
+    
+    this.marker = new mapboxgl.Marker({ draggable: true, color: "hsl(240, 100%, 60%)" })
+      .setLngLat([this.lng, this.lat])
+      .addTo(this.map);
       
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
-      var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [ lng, lat],
-      zoom: 14
-    });
-
-    var marker = new mapboxgl.Marker()
-      .setLngLat([ lng, lat])
-      .addTo(map);
-
-    map.on('load', () => {
-      map.resize();
-    });
-
-    // navigator.geolocation.getCurrentPosition((position)=>{   
-    //   const lng = position.coords.longitude;
-    //   const lat = position.coords.latitude;
-    //   this.coords = {"lng": lng, "lat": lat};
-      
-    //   mapboxgl.accessToken = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
-    //     var map = new mapboxgl.Map({
-    //     container: 'map',
-    //     style: 'mapbox://styles/mapbox/streets-v11',
-    //     center: [ lng, lat],
-    //     zoom: 14
-    //   });
-
-    //   var marker = new mapboxgl.Marker()
-    //     .setLngLat([ lng, lat])
-    //     .addTo(map);
-
-    //   map.on('load', () => {
-    //     map.resize();
-    //   })
-      
-    // });
-
-    this.btnOrder = false;
+    this.coords = {"lng": this.lng, "lat": this.lat, "address": this.checkAddress};
+    this.continue = true;
 
   }
 
@@ -115,23 +112,44 @@ export class OrderPage implements OnInit {
   }
 
   order() {
-    const cartItems = this.cartService.getCartItems();
-    const cartTotalPrice = this.cartService.getCartPrice();
-    const userID = this.loginSerive.getUserID();
-    this.orderService.placeOrder(userID, cartItems, cartTotalPrice, this.coords);
-    this.cartService.clearCart();
-    this.btnOrder = true;
-    this.dismiss();
-    this.presentToast();
+    if(this.continue) {
+      let lngLat = this.marker.getLngLat();
+      const lng = lngLat.lng;
+      const lat = lngLat.lat;
+      this.coords = {"lng": lng, "lat": lat, "address": this.checkAddress};
+      console.log(this.marker);
+      console.log(this.coords);
+
+      const cartItems = this.cartService.getCartItems();
+      const cartTotalPrice = this.cartService.getCartPrice();
+      const userID = this.loginSerive.getUserID();
+      this.orderService.placeOrder(userID, cartItems, cartTotalPrice, this.coords);
+      this.cartService.clearCart();
+      this.dismiss();
+      this.presentToast();
+    } else {
+      this.presentAlert();
+    }
 
   }
 
   async presentToast() {
     const toast = await this.toastController.create({
       message: 'Your order was successfull',
-      duration: 2000
+      duration: 1500
     });
     toast.present();
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Alert',
+      message: 'Enter your location!',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
 }

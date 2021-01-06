@@ -22,7 +22,7 @@ export interface Geometry {
 })
 export class MapboxService {
 
-  key = '';
+  key = 'pk.eyJ1IjoiZXN0bmVmbyIsImEiOiJja2hrZ2xndnAxZ3J6MnJvOXRicTFuZmhnIn0.Kx8WzEt96j9aLBt0NhQoaQ';
 
   constructor(private http: HttpClient) { }
 

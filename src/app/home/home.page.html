@@ -8,12 +8,13 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="primary">
- 
-  <div>
-    <ion-title class="headings">Food</ion-title>
-  </div>
   
-  <div class="sideway-scroll">
+  <div *ngIf="itemList" class="sideway-scroll">
+
+    <div>
+      <ion-title class="headings">Food</ion-title>
+    </div>
+
     <div class="cat">
       <ion-button shape="round" color="tertiary" strong="true" routerLink="/shop/items">
         All
@@ -27,40 +28,26 @@
     </div>
   </div>
 
-  <div>
-    <ion-title class="headings">
-      Recent<span class="expand" routerLink="/shop/items">See more...</span>
-    </ion-title>
-  </div>
+  <div *ngIf="itemList; else loading">
+    <div>
+      <ion-title class="headings">
+        Recent<span class="expand" routerLink="/shop/items">See more...</span>
+      </ion-title>
+    </div>
 
-  <div>
-    <div class="catbox" *ngFor="let item of itemList">
-        <ion-card>
-          <ion-img [src]="item.image" style="max-width: 100%; max-height: 100%;"></ion-img>
-        </ion-card>
+    <div>
+      <div class="catbox" *ngFor="let item of itemList">
+          <ion-card>
+            <ion-img [src]="item.image" style="max-width: 100%; max-height: 100%;"></ion-img>
+          </ion-card>
+      </div>
     </div>
   </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="img">
-          <ion-img></ion-img>
-        </div>
-      </ion-col>
-      <ion-col>
-        <div class="img">
-          <ion-img></ion-img>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <div class="img">
-          <ion-img></ion-img>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ng-template #loading>
+    <div class="no-connect">
+      <ion-spinner color="tertiary"></ion-spinner>
+    </div>
+  </ng-template>
   
 </ion-content>

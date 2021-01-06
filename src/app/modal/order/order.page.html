@@ -10,25 +10,23 @@
 </ion-header>
 
 <ion-content color="primary">
-  <div class="map-section">
-
-    <!-- <ion-searchbar (input)="search($event)" (change)="addressCheck($event)"  
+  <ion-searchbar (input)="search($event)" (change)="addressCheck($event)"  
                     [value]="selectedAddress">
     </ion-searchbar>
 
     <ion-item *ngFor="let address of addresses ; let i=index" (click)="onSelect(address, i)" >
       {{ address}}
-    </ion-item> -->
+    </ion-item>
 
+  <div class="map-section">
     <div id='map' style='width: 100%; height: 100%;'></div>
-
   </div>
 
   <div>
-    <ion-button color="tertiary" expand="full" (click)="locate()">
+    <!-- <ion-button color="tertiary" expand="full" (click)="locate()">
       <ion-icon name="locate-outline"></ion-icon>Locate Address
-    </ion-button>
-    <ion-button  [disabled]="btnOrder" color="tertiary" 
+    </ion-button> -->
+    <ion-button color="tertiary" 
             expand="full" (click)="order()">
       <ion-icon name="card-outline"></ion-icon>Place Order
     </ion-button>
