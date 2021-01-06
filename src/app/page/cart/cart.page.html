@@ -20,50 +20,18 @@
   <div class="ion-padding">
 
     <div *ngIf="cartList.length == 0">
-      <ion-button expand="full" color="tertiary" strong="true" routerLink="/shop/items">
+      <ion-button expand="block" color="tertiary" strong="true" routerLink="/shop/items">
         Continue Shopping
       </ion-button>
     </div>
 
-    <!-- <ion-grid>
-      <div *ngFor="let item of cartList" class="item ion-padding-bottom">
-        <ion-row>
-          <ion-col>
-            <div >
-              <ion-card class="card-img">
-                <ion-img [src]="item.image"></ion-img>
-              </ion-card>
-            </div>
-          </ion-col>
-          <ion-col>
-            <div >
-              <ion-text class="item-title">{{item.name}} x {{item.quantity}}</ion-text><br>
-              <ion-text class="item-desc">{{item.desc}}</ion-text><br>
-              <ion-text class="item-price">R{{item.price}}</ion-text><br>
-              <ion-button size="small" color="light" (click)="removeItem(item)">
-                <ion-icon name="remove-circle-outline"></ion-icon>
-              </ion-button>
-              <ion-button size="small" color="light" (click)="addItem(item)">
-                <ion-icon name="add-circle-outline"></ion-icon>
-              </ion-button>
-              <ion-button size="small" color="light" (click)="removeItems(item)">
-                <ion-icon name="trash-outline"></ion-icon>
-              </ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
+    <ion-card *ngFor="let item of cartList" class="item" color="secondary">
+      <div class="item-image">
+        <ion-img class="image" [src]="item.image"></ion-img>
       </div>
-    </ion-grid> -->
 
-    <div *ngFor="let item of cartList" class="item ion-padding-bottom">
-      <div class="image">
-        <ion-card class="card-img">
-          <ion-img [src]="item.image"></ion-img>
-        </ion-card>
-        
-      </div>
       <div class="item-info">
-        <ion-text class="item-title">{{item.name}} x {{item.quantity}}</ion-text><br>
+        <ion-text class="item-title" color="tertiary">{{item.name}} x {{item.quantity}}</ion-text><br>
         <ion-text class="item-desc">{{item.desc}}</ion-text><br>
         <ion-text class="item-price">R{{item.price}}</ion-text><br>
         <ion-button size="small" color="tertiary" (click)="removeItem(item)">
@@ -76,13 +44,13 @@
           <ion-icon name="trash-outline"></ion-icon>
         </ion-button>
       </div>
-    </div>
+    </ion-card>
     
     <div *ngIf="cartList.length > 0">
-      <ion-button expand="full" color="tertiary" (click)="clear()">
+      <ion-button expand="block" color="tertiary" (click)="clear()">
         <ion-icon name="trash-outline"></ion-icon>Clear Items
       </ion-button>
-      <ion-button expand="full" color="tertiary" (click)="order()">
+      <ion-button expand="block" color="tertiary" (click)="order()">
         Place Order R{{cartService.getCartPrice()}}
       </ion-button>
     </div>
