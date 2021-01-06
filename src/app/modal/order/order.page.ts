@@ -95,10 +95,20 @@ export class OrderPage implements OnInit {
     //console.log(this.selectedAddress)
     // this.user.address = this.selectedAddress;
     this.addresses = [];
+
+    if (this.marker != undefined) {
+      this.marker.remove();
+    }
     
     this.marker = new mapboxgl.Marker({ draggable: true, color: "hsl(240, 100%, 60%)" })
       .setLngLat([this.lng, this.lat])
       .addTo(this.map);
+
+    this.map.flyTo({
+        center: [this.lng, this.lat],
+        zoom: 15,
+        essential: true
+    });
       
     this.coords = {"lng": this.lng, "lat": this.lat, "address": this.checkAddress};
     this.continue = true;
