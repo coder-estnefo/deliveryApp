@@ -66,9 +66,9 @@ export class OrderService {
       location: coordinates,
       items: order_items
     }).then(() => {
-      console.log('success');
+      //console.log('success');
     }).catch(error => {
-      console.log('failure=>', error);
+      //console.log('failure=>', error);
     });
   }
 

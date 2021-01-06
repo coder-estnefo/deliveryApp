@@ -41,9 +41,15 @@
 <ion-content color="primary">
 
   <ion-card *ngIf="showProfile" class="personal">
+    
     <div>
       <ion-text class="personal-heading">Profile</ion-text>
     </div>
+
+    <div *ngIf="!profileDetails" class="no-connect">
+      <ion-spinner color="tertiary"></ion-spinner>
+    </div>
+
     <ion-card *ngFor="let detail of profileDetails" class="ion-text-capitalize">
       <ion-item>
         <ion-label position="stacked">Name</ion-label>
@@ -67,6 +73,10 @@
   
   <ion-card *ngIf="showHistory" class="history">
     <ion-text class="personal-heading">Order History</ion-text>
+
+    <div *ngIf="!historyArr" class="no-connect">
+      <ion-spinner color="tertiary"></ion-spinner>
+    </div>
 
     <ion-card *ngFor="let currentOrder of historyArr">
       <ion-item-group>

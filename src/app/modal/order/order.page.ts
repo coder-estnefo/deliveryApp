@@ -127,9 +127,7 @@ export class OrderPage implements OnInit {
       const lng = lngLat.lng;
       const lat = lngLat.lat;
       this.coords = {"lng": lng, "lat": lat, "address": this.checkAddress};
-      console.log(this.marker);
-      console.log(this.coords);
-
+      
       const cartItems = this.cartService.getCartItems();
       const cartTotalPrice = this.cartService.getCartPrice();
       const userID = this.loginSerive.getUserID();
