@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     let email = form.value.email;
     let password = form.value.password;
     this.loginService.login(email, password);
-    this.loginForm.reset();
+    //this.loginForm.reset();
   }
 
 }

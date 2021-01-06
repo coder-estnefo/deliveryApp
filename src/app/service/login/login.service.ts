@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { CustomerService } from '../customer/customer.service';
@@ -13,7 +14,8 @@ export class LoginService {
   constructor(
     private auth: AngularFireAuth, 
     private router: Router,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    public alertController: AlertController
   ) { }
 
   createUser(name, surname, email, password) {
@@ -36,18 +38,16 @@ export class LoginService {
         firebase.auth().signInAnonymously().then(() => {
           this.router.navigate(['/shop/admin']);
         }).catch(error => {
-          alert('login failed')
+          this.presentAlert();
         });
       } else {
-          alert('login failed') 
+          this.presentAlert(); 
       }
     } else {
       firebase.auth().signInWithEmailAndPassword(email, password).then(() => {
-        //console.log('logged in');
-        this.router.navigate(['/shop/home']);
+          this.router.navigate(['/shop/home']);
       }).catch(error => {
-        //console.log('Unable to login -> ',error);
-        alert('login failed')
+          this.presentAlert();
       });
     }
   }
@@ -64,5 +64,16 @@ export class LoginService {
     let user = firebase.auth().currentUser;
     let userID = user.uid;
     return userID;
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Login Failed',
+      message: 'Incorrect Login details',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
