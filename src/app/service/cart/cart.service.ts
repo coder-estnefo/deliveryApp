@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 export interface CartItems {
   no: string;
@@ -11,44 +11,53 @@ export interface CartItems {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CartService {
-
   cartList: CartItems[] = [];
 
-  constructor() { }
+  constructor() {}
 
   addToCart(item) {
-    let item_no = item.no;
-    let name = item.name;
-    let desc = item.description;
-    let price = item.price;
-    let image = item.image;
+    const { item_no, name, desc, price, image } = item;
+
     let quantity;
     let isFound = false;
 
     if (this.cartList.length > 0) {
       for (let current_item in this.cartList) {
-        if (this.cartList[current_item]['no'] == item_no) {
-          let price = this.cartList[current_item]['price'];
-          this.cartList[current_item]['quantity'] += 1;
-          this.cartList[current_item]['total_price'] += price;
+        if (this.cartList[current_item]["no"] == item_no) {
+          let price = this.cartList[current_item]["price"];
+          this.cartList[current_item]["quantity"] += 1;
+          this.cartList[current_item]["total_price"] += price;
           isFound = true;
-          break; 
+          break;
         }
       }
 
       if (isFound == false) {
-        this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
-                        'image': image,'quantity': 1, 'total_price': price});
+        this.cartList.push({
+          no: item_no,
+          name: name,
+          desc: desc,
+          price: price,
+          image: image,
+          quantity: 1,
+          total_price: price,
+        });
       }
-
     } else {
       quantity = 1;
       let total_price = price;
-      this.cartList.push({'no': item_no, 'name': name,'desc': desc, 'price': price,
-                          'image': image,'quantity': quantity, 'total_price': total_price});
+      this.cartList.push({
+        no: item_no,
+        name: name,
+        desc: desc,
+        price: price,
+        image: image,
+        quantity: quantity,
+        total_price: total_price,
+      });
     }
 
     //console.log(this.cartList);
@@ -58,16 +67,16 @@ export class CartService {
     let item_no = item.no;
 
     for (let current_item in this.cartList) {
-      if (this.cartList[current_item]['no'] == item_no) {
-        if (this.cartList[current_item]['quantity'] > 0) {
-          let price = this.cartList[current_item]['price'];
-          this.cartList[current_item]['total_price'] -= price;
-          this.cartList[current_item]['quantity'] -= 1;
+      if (this.cartList[current_item]["no"] == item_no) {
+        if (this.cartList[current_item]["quantity"] > 0) {
+          let price = this.cartList[current_item]["price"];
+          this.cartList[current_item]["total_price"] -= price;
+          this.cartList[current_item]["quantity"] -= 1;
           break;
         }
 
-        if (this.cartList[current_item]['quantity'] == 0) {
-          this.cartList.splice(this.cartList.indexOf(item),1);
+        if (this.cartList[current_item]["quantity"] == 0) {
+          this.cartList.splice(this.cartList.indexOf(item), 1);
           break;
         }
       }
@@ -83,7 +92,7 @@ export class CartService {
   getCartCount() {
     let total = 0;
     for (let current_item in this.cartList) {
-      total += this.cartList[current_item]['quantity'];
+      total += this.cartList[current_item]["quantity"];
     }
 
     return total;
@@ -92,7 +101,7 @@ export class CartService {
   getCartPrice() {
     let total = 0.0;
     for (let current_item in this.cartList) {
-      total += this.cartList[current_item]['total_price'];
+      total += this.cartList[current_item]["total_price"];
     }
 
     return total.toFixed(2);
@@ -107,5 +116,4 @@ export class CartService {
   getCartItems() {
     return this.cartList;
   }
-
 }
