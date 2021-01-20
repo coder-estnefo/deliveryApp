@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/service/login/login.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { LoginService } from "src/app/service/login/login.service";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: "app-login",
+  templateUrl: "./login.page.html",
+  styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
-
   loginForm;
   alert;
 
@@ -17,12 +16,12 @@ export class LoginPage implements OnInit {
     private formBuilder: FormBuilder,
     private loginService: LoginService,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required]
+      email: ["", Validators.required],
+      password: ["", Validators.required],
     });
   }
 
@@ -32,5 +31,4 @@ export class LoginPage implements OnInit {
     this.loginService.login(email, password);
     //this.loginForm.reset();
   }
-
 }

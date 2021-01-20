@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import  firebase  from 'firebase/app';
-import 'firebase/firestore';
+import { Injectable } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class OrderService {
-
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore) {}
 
   getTime() {
     let date = new Date();
@@ -26,50 +25,57 @@ export class OrderService {
     let ss;
 
     if (month < 10) {
-      mm = '0' + month;
+      mm = "0" + month;
     } else {
-      mm = month; 
+      mm = month;
     }
 
     if (day < 10) {
-      dd = '0' + day;
+      dd = "0" + day;
     } else {
-      dd = day; 
+      dd = day;
     }
 
     if (hours < 10) {
-      hh = '0' + hours;
+      hh = "0" + hours;
     } else {
-      hh = hours; 
+      hh = hours;
     }
 
     if (minutes < 10) {
-      mi = '0' + minutes;
+      mi = "0" + minutes;
     } else {
-      mi = minutes; 
+      mi = minutes;
     }
 
     if (seconds < 10) {
-      ss = '0' + seconds;
+      ss = "0" + seconds;
     } else {
       ss = seconds;
     }
 
-    let dateTime = '' + year + mm + dd+ hh + mi + ss;
-  
+    let dateTime = "" + year + mm + dd + hh + mi + ss;
+
     return dateTime;
   }
 
   placeOrder(userID, order_items, cartTotal, coordinates) {
-    this.firestore.collection('orders').doc('history').collection(userID).doc(this.getTime()).set({
-      order: {order_no: this.getTime(), order_total: cartTotal},
-      location: coordinates,
-      items: order_items
-    }).then(() => {
-      //console.log('success');
-    }).catch(error => {
-      //console.log('failure=>', error);
-    });
+    this.firestore
+      .collection("orders")
+      .doc("history")
+      .collection(userID)
+      .doc(this.getTime())
+      .set({
+        order: { order_no: this.getTime(), order_total: cartTotal },
+        location: coordinates,
+        items: order_items,
+      })
+      .then(() => {
+        //console.log('success');
+      })
+      .catch((error) => {
+        //console.log('failure=>', error);
+      });
   }
 
   getOrders(userID) {

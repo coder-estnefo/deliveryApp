@@ -39,63 +39,92 @@
 </ion-header>
 
 <ion-content color="primary">
-
   <ion-card *ngIf="showAdd == true" class="section">
     <div>
       <ion-title class="personal-heading">Add Item</ion-title>
 
       <ion-card>
-      <form [formGroup]="addForm">
-        <ion-item>
-          <ion-label position="stacked"><strong>Item</strong></ion-label>
-          <ion-input formControlName="item" pattern="[a-zA-Z\s]+" placeholder="e.g Bread"></ion-input>
-        </ion-item>
+        <form [formGroup]="addForm">
+          <ion-item>
+            <ion-label position="stacked"><strong>Item</strong></ion-label>
+            <ion-input
+              formControlName="item"
+              pattern="[a-zA-Z\s]+"
+              placeholder="e.g Bread"
+            ></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <ion-label position="stacked"><strong>Description</strong></ion-label>
-          <ion-input formControlName="description" pattern="[a-zA-Z\s]+" placeholder="e.g whole wheat bread"></ion-input>
-        </ion-item>
-        
-        <ion-item>
-          <ion-label position="stacked"><strong>Price</strong></ion-label>
-          <ion-input formControlName="price" type="number" min="1.00" step="0.01" placeholder="e.g 12.99"></ion-input>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked"
+              ><strong>Description</strong></ion-label
+            >
+            <ion-input
+              formControlName="description"
+              pattern="[a-zA-Z\s]+"
+              placeholder="e.g whole wheat bread"
+            ></ion-input>
+          </ion-item>
 
-        <ion-item>
-          <div class="button-wrap">
-            <label class ="new-button" for="upload-image">Choose Image</label>
-            <input formControlName="img" id="upload-image" type="file" (change)="uploadFile($event)">
-          </div>
-        </ion-item>
-        <ion-item>
-          <ion-progress-bar color="primary" value="{{uploadPercent | async}}"></ion-progress-bar>
-        </ion-item>
+          <ion-item>
+            <ion-label position="stacked"><strong>Price</strong></ion-label>
+            <ion-input
+              formControlName="price"
+              type="number"
+              min="1.00"
+              step="0.01"
+              placeholder="e.g 12.99"
+            ></ion-input>
+          </ion-item>
 
-        <ion-button color="tertiary" expand="full" (click)="uploadItem(addForm)"
-              [disabled]="addForm.invalid">
-          Add
-        </ion-button>
+          <ion-item>
+            <div class="button-wrap">
+              <label class="new-button" for="upload-image">Choose Image</label>
+              <input
+                formControlName="img"
+                id="upload-image"
+                type="file"
+                (change)="uploadFile($event)"
+                accept="image/*"
+              />
+            </div>
+          </ion-item>
+          <ion-item>
+            <ion-progress-bar
+              color="primary"
+              value="{{uploadPercent | async}}"
+            ></ion-progress-bar>
+          </ion-item>
 
-      </form>
+          <ion-button
+            color="tertiary"
+            expand="full"
+            (click)="uploadItem(addForm)"
+            [disabled]="addForm.invalid"
+          >
+            Add
+          </ion-button>
+        </form>
       </ion-card>
-
     </div>
   </ion-card>
 
   <ion-card *ngIf="showView == true" class="section">
     <ion-title class="personal-heading">View Items</ion-title>
-    
+
     <ion-card *ngFor="let item of itemsList">
       <ion-item>
         <ion-thumbnail slot="start">
-          <img [src]="item.image">
+          <img [src]="item.image" />
         </ion-thumbnail>
         <ion-label>
           <h3 class="item-title">{{item.name}}</h3>
           <p>{{item.description}}</p>
           <p>R {{item.price}}</p>
           <p>
-            <ion-button color="tertiary" (click)="deleteItem(item.no, item.image)">
+            <ion-button
+              color="tertiary"
+              (click)="deleteItem(item.no, item.image)"
+            >
               <ion-icon name="trash-outline"></ion-icon>Delete Item
             </ion-button>
           </p>
@@ -103,5 +132,4 @@
       </ion-item>
     </ion-card>
   </ion-card>
-
 </ion-content>

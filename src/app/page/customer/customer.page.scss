@@ -1,35 +1,41 @@
 .personal {
-    margin: 10px;
-    padding: 10px;
-    height: 100%;
-    background: rgb(224, 224, 224);
-    border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  height: 100%;
+  background: rgb(224, 224, 224);
+  border-radius: 4px;
 }
 
 .personal-heading {
-    padding-left: 10px;
-    font-size: 18px;
-    font-weight: 900;
-    /*color: #000000;*/
-    text-align: right;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 900;
+  /*color: #000000;*/
+  text-align: right;
 }
 
 .history {
-    margin: 10px;
-    padding: 10px;
-    // height: 100%;
-    background: rgb(224, 224, 224);
-    border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  // height: 100%;
+  background: rgb(224, 224, 224);
+  border-radius: 4px;
 }
 
 .name {
-    padding: 16px;
-    font-size: 20px;
-    font-weight: 900;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .no-connect {
-    margin-top: 50%;
-    margin-bottom: 50%;
-    text-align: center;
+  margin-top: 50%;
+  margin-bottom: 50%;
+  text-align: center;
+}
+
+.prof-label {
+  font-size: 18px;
+  font-weight: 600;
+  /*color: #000000;*/
 }

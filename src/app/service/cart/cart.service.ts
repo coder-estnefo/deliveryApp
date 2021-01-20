@@ -19,14 +19,14 @@ export class CartService {
   constructor() {}
 
   addToCart(item) {
-    const { item_no, name, desc, price, image } = item;
+    const { no, name, description, price, image } = item;
 
     let quantity;
     let isFound = false;
 
     if (this.cartList.length > 0) {
       for (let current_item in this.cartList) {
-        if (this.cartList[current_item]["no"] == item_no) {
+        if (this.cartList[current_item]["no"] == no) {
           let price = this.cartList[current_item]["price"];
           this.cartList[current_item]["quantity"] += 1;
           this.cartList[current_item]["total_price"] += price;
@@ -37,9 +37,9 @@ export class CartService {
 
       if (isFound == false) {
         this.cartList.push({
-          no: item_no,
+          no: no,
           name: name,
-          desc: desc,
+          desc: description,
           price: price,
           image: image,
           quantity: 1,
@@ -50,9 +50,9 @@ export class CartService {
       quantity = 1;
       let total_price = price;
       this.cartList.push({
-        no: item_no,
+        no: no,
         name: name,
-        desc: desc,
+        desc: description,
         price: price,
         image: image,
         quantity: quantity,

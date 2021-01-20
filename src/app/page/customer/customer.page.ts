@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
-import { CustomerService } from 'src/app/service/customer/customer.service';
-import { LoginService } from 'src/app/service/login/login.service';
-import { OrderService } from 'src/app/service/order/order.service';
+import { Component, OnInit } from "@angular/core";
+import { AngularFireAuth } from "@angular/fire/auth";
+import { Router } from "@angular/router";
+import { MenuController } from "@ionic/angular";
+import { CustomerService } from "src/app/service/customer/customer.service";
+import { LoginService } from "src/app/service/login/login.service";
+import { OrderService } from "src/app/service/order/order.service";
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.page.html',
-  styleUrls: ['./customer.page.scss'],
+  selector: "app-customer",
+  templateUrl: "./customer.page.html",
+  styleUrls: ["./customer.page.scss"],
 })
 export class CustomerPage implements OnInit {
-
   showProfile = true;
   showHistory;
   historyArr;
@@ -25,13 +24,13 @@ export class CustomerPage implements OnInit {
     private customerService: CustomerService,
     private auth: AngularFireAuth,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.auth.user.subscribe(user => {
-      if(user) {
-        if(user.isAnonymous) {
-          this.router.navigate(['/shop/admin']);
+    this.auth.user.subscribe((user) => {
+      if (user) {
+        if (user.isAnonymous) {
+          this.router.navigate(["/shop/admin"]);
         }
       }
     });
@@ -40,20 +39,20 @@ export class CustomerPage implements OnInit {
 
   getHistory() {
     const userID = this.loginService.getUserID();
-    this.orderService.getOrders(userID).subscribe(itemObj => {
+    this.orderService.getOrders(userID).subscribe((itemObj) => {
       this.historyArr = itemObj;
     });
   }
 
   getProfile() {
     const userID = this.loginService.getUserID();
-    this.customerService.getUserDetails(userID).subscribe(details => {
+    this.customerService.getUserDetails(userID).subscribe((details) => {
       this.profileDetails = details;
     });
   }
 
   closeMenu() {
-    this.menuController.close('customerMenu');
+    this.menuController.close("customerMenu");
   }
 
   profile() {
@@ -71,11 +70,11 @@ export class CustomerPage implements OnInit {
   }
 
   logout() {
-    if(this.menuController.isOpen('customerMenu')) {
+    if (this.menuController.isOpen("customerMenu")) {
       this.closeMenu();
     }
-    
+
     this.loginService.logout();
-    this.router.navigate(['/shop/home']);
+    this.router.navigate(["/shop/home"]);
   }
 }
