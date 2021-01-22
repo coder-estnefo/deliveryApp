@@ -6,7 +6,11 @@
   "webDir": "www",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 3000
+      "launchShowDuration": 15000,
+      "launchAutoHide": true,
+      "showSpinner": true,
+      "spinnerColor": "#ffc0cb",
+      "androidSplashResourceName": "splash"
     }
   },
   "cordova": {}
