@@ -8,7 +8,7 @@
 
 .personal-heading {
   padding-left: 10px;
-  font-size: 18px;
+  font-size: 1.5rem;
   font-weight: 900;
   /*color: #000000;*/
   text-align: right;
@@ -35,7 +35,26 @@
 }
 
 .prof-label {
-  font-size: 18px;
-  font-weight: 600;
-  /*color: #000000;*/
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.prof-text {
+  font-size: 1rem;
+}
+
+.item {
+  color: #000;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+  text-align: center;
+}
+
+.item-info {
+  padding: 4px;
+  width: 100%;
 }

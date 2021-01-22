@@ -127,6 +127,8 @@ export class OrderPage implements OnInit {
 
     this.coords = { lng: this.lng, lat: this.lat, address: this.checkAddress };
     this.continue = true;
+
+    this.presentInfoToast();
   }
 
   dismiss() {
@@ -257,5 +259,14 @@ export class OrderPage implements OnInit {
     } else {
       this.presentAlert();
     }
+  }
+
+  async presentInfoToast() {
+    const toast = await this.toastController.create({
+      message: "You Can Drag the Marker To Your Accurate Location",
+      duration: 15000,
+      position: "top",
+    });
+    toast.present();
   }
 }

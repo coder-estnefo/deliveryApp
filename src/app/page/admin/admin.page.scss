@@ -1,35 +1,35 @@
 .name {
-    padding: 16px;
-    font-size: 20px;
-    font-weight: 900;
+  padding: 16px;
+  font-size: 20px;
+  font-weight: 900;
 }
 
 .personal-heading {
-    padding-left: 10px;
-    font-size: 22px;
-    font-weight: 600;
+  padding-left: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
 }
 
 .section {
-    margin: 10px;
-    padding: 10px;
-    /*height: 100%;*/
-    background: rgb(224, 224, 224);
-    border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  /*height: 100%;*/
+  background: rgb(224, 224, 224);
+  border-radius: 4px;
 }
 
 .new-button {
-    display: inline-block;
-    cursor: pointer;
-    background-color: rgba(255, 181, 195);
-    color: #fff;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    min-width: 64px;
-    line-height: 24px;
-    padding: 0 10px;
-    border-radius: 0;
+  display: inline-block;
+  cursor: pointer;
+  background-color: rgba(255, 181, 195);
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 64px;
+  line-height: 24px;
+  padding: 0 10px;
+  border-radius: 0;
 }
 input[type="file"] {
   position: absolute;
@@ -37,12 +37,12 @@ input[type="file"] {
   top: 0;
   left: 0;
   font-size: 15px;
-  color: rgb(153,153,153);
+  color: rgb(153, 153, 153);
 }
 .button-wrap {
   position: relative;
 }
 
 .item-title {
-    font-weight: 900;
+  font-weight: 900;
 }

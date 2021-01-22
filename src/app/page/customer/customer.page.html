@@ -49,20 +49,19 @@
     </div>
 
     <ion-card *ngFor="let detail of profileDetails" class="ion-text-capitalize">
-      <ion-item>
-        <ion-label class="prof-label" position="stacked">Name</ion-label>
-        <ion-input [value]="detail.name" readonly></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label class="prof-label" position="stacked">Surname</ion-label>
-        <ion-input [value]="detail.surname" readonly></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label class="prof-label" position="stacked">Email</ion-label>
-        <ion-input [value]="detail.email" readonly></ion-input>
-      </ion-item>
+      <div class="item">
+        <div class="item-image">
+          <ion-icon name="person-outline" style="font-size: 128px"> </ion-icon>
+        </div>
+        <div class="item-info ion-text-wrap">
+          <ion-label class="prof-label">Name</ion-label>
+          <ion-label class="prof-text">{{detail.name}}</ion-label>
+          <ion-label class="prof-label">Surname</ion-label>
+          <ion-label class="prof-text">{{detail.surname}}</ion-label>
+          <ion-label class="prof-label">Email</ion-label>
+          <ion-label class="prof-text">{{detail.email}}</ion-label>
+        </div>
+      </div>
     </ion-card>
   </ion-card>
 
@@ -86,7 +85,7 @@
           <ion-thumbnail slot="start">
             <img [src]="currentItem.image" />
           </ion-thumbnail>
-          <ion-label>
+          <ion-label class="ion-text-wrap">
             <h3>{{currentItem.name}} x {{currentItem.quantity}}</h3>
             <p>{{currentItem.desc}}</p>
             <p>R {{currentItem.price}} each</p>

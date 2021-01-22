@@ -24,7 +24,7 @@ export class AdminPage implements OnInit {
 
   showAdd = false;
   showView = true;
-  showHistory = true;
+  showHistory = false;
 
   historyArr;
 
