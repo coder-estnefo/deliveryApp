@@ -20,22 +20,19 @@ export class ShopPage implements OnInit {
 
   ngOnInit() {
     this.cartCount = this.cartService.getCartCount();
+  }
 
+  navigateTo() {
     this.auth.user.subscribe((user) => {
       if (user) {
         if (user.isAnonymous) {
-          this.user = "admin";
           this.router.navigate(["/shop/admin"]);
         } else {
-          this.user = "customer";
+          this.router.navigate(["/shop/customer"]);
         }
+      } else {
+        this.router.navigate(["/shop/login"]);
       }
     });
-  }
-
-  checkUser() {
-    if (this.auth.user != null) {
-      this.router.navigate(["/shop/home"]);
-    }
   }
 }

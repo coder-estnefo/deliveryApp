@@ -27,7 +27,7 @@ export class LoginService {
         console.log(id);
         this.customerService.setUser(id, name, surname, email);
         //this.router.navigate(['/shop/login']);
-        this.router.navigate(["/shop/customer"]);
+        this.router.navigate(["/shop/home"]);
       })
       .catch((error) => {
         //console.log('error ->',error);

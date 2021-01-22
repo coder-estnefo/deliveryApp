@@ -1,60 +1,72 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { HomePage } from './home/home.page';
-import { ShopPage } from './page/shop/shop.page';
-import { redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { HomePage } from "./home/home.page";
+import { ShopPage } from "./page/shop/shop.page";
+import { redirectUnauthorizedTo, canActivate } from "@angular/fire/auth-guard";
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['shop/login']);
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(["shop/login"]);
 
 const routes: Routes = [
- 
   {
     // path: '',
     // redirectTo: 'home',
     // pathMatch: 'full'
-    path: '',
-    redirectTo: 'shop/home',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "shop/home",
+    pathMatch: "full",
   },
   {
-    path: 'shop',
+    path: "shop",
     component: ShopPage,
     children: [
       {
-        path: 'register',
-        loadChildren: () => import('./page/register/register.module').then( m => m.RegisterPageModule)
+        path: "register",
+        loadChildren: () =>
+          import("./page/register/register.module").then(
+            (m) => m.RegisterPageModule
+          ),
       },
       {
-        path: 'items',
-        loadChildren: () => import('./page/items/items.module').then( m => m.ItemsPageModule)
+        path: "items",
+        loadChildren: () =>
+          import("./page/items/items.module").then((m) => m.ItemsPageModule),
       },
       {
-        path: 'cart',
-        loadChildren: () => import('./page/cart/cart.module').then( m => m.CartPageModule)
+        path: "cart",
+        loadChildren: () =>
+          import("./page/cart/cart.module").then((m) => m.CartPageModule),
       },
       {
-        path: 'order',
-        loadChildren: () => import('./modal/order/order.module').then( m => m.OrderPageModule)
+        path: "order",
+        loadChildren: () =>
+          import("./modal/order/order.module").then((m) => m.OrderPageModule),
       },
       {
-        path: 'login',
-        loadChildren: () => import('./page/login/login.module').then( m => m.LoginPageModule)
+        path: "login",
+        loadChildren: () =>
+          import("./page/login/login.module").then((m) => m.LoginPageModule),
       },
       {
-        path: 'home',
-        loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+        path: "home",
+        loadChildren: () =>
+          import("./home/home.module").then((m) => m.HomePageModule),
       },
       {
-        path: 'customer',
-        loadChildren: () => import('./page/customer/customer.module').then( m => m.CustomerPageModule),
-        ...canActivate(redirectUnauthorizedToLogin)
+        path: "customer",
+        loadChildren: () =>
+          import("./page/customer/customer.module").then(
+            (m) => m.CustomerPageModule
+          ),
+        ...canActivate(redirectUnauthorizedToLogin),
       },
       {
-        path: 'admin',
-        loadChildren: () => import('./page/admin/admin.module').then( m => m.AdminPageModule),
-        ...canActivate(redirectUnauthorizedToLogin)
+        path: "admin",
+        loadChildren: () =>
+          import("./page/admin/admin.module").then((m) => m.AdminPageModule),
+        ...canActivate(redirectUnauthorizedToLogin),
       },
-    ]
+    ],
   },
 
   // {
@@ -62,22 +74,16 @@ const routes: Routes = [
   //   loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
   // },
 
-  
-
   // {
   //   path: 'shop',
   //   loadChildren: () => import('./page/shop/shop.module').then( m => m.ShopPageModule)
   // },
-
-
-  
-
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

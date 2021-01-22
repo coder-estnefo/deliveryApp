@@ -152,7 +152,7 @@ export class OrderPage implements OnInit {
         cartTotalPrice,
         this.coords
       );
-      this.cartService.clearCart();
+      //this.cartService.clearCart();
       this.dismiss();
       this.presentToast();
     } else {

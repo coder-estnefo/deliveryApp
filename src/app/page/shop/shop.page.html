@@ -14,7 +14,7 @@
         <ion-badge>{{cartService.getCartCount()}}</ion-badge>
         <ion-label>Cart</ion-label>
       </ion-tab-button>
-      <ion-tab-button [tab]="user">
+      <ion-tab-button (click)="navigateTo()">
         <ion-icon size="large" name="person-outline"></ion-icon>
         <ion-label>Profile</ion-label>
       </ion-tab-button>

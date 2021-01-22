@@ -1,29 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
-import { Observable } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-import { ItemService } from 'src/app/service/item/item.service';
-import { LoginService } from 'src/app/service/login/login.service';
+import { Component, OnInit } from "@angular/core";
+import { AngularFirestore } from "@angular/fire/firestore";
+import { AngularFireStorage } from "@angular/fire/storage";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { MenuController } from "@ionic/angular";
+import { Observable } from "rxjs";
+import { finalize } from "rxjs/operators";
+import { ItemService } from "src/app/service/item/item.service";
+import { LoginService } from "src/app/service/login/login.service";
+import { OrderService } from "src/app/service/order/order.service";
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.page.html',
-  styleUrls: ['./admin.page.scss'],
+  selector: "app-admin",
+  templateUrl: "./admin.page.html",
+  styleUrls: ["./admin.page.scss"],
 })
 export class AdminPage implements OnInit {
-
   image;
   uploadPercent: Observable<number>;
   itemsList;
-  
+
   addForm;
 
   showAdd = false;
   showView = true;
+  showHistory = true;
+
+  historyArr;
 
   constructor(
     public menuController: MenuController,
@@ -32,62 +35,75 @@ export class AdminPage implements OnInit {
     private formBuilder: FormBuilder,
     private storage: AngularFireStorage,
     private firestore: AngularFirestore,
-    private itemService: ItemService
-  ) { }
+    private itemService: ItemService,
+    private orderService: OrderService
+  ) {}
 
   ngOnInit() {
     this.addForm = this.formBuilder.group({
-      item: ['', Validators.required],
-      description: ['', Validators.required],
-      price: ['', Validators.required],
-      img: ['', Validators.required]
+      item: ["", Validators.required],
+      description: ["", Validators.required],
+      price: ["", Validators.required],
+      img: ["", Validators.required],
     });
 
     this.getItems();
+    this.getHistory();
   }
 
   openAddItem() {
     this.showAdd = true;
     this.showView = false;
+    this.showHistory = false;
     this.closeMenu();
   }
 
   openViewItems() {
     this.showView = true;
     this.showAdd = false;
+    this.showHistory = false;
+    this.closeMenu();
+  }
+
+  openOrders() {
+    this.showView = false;
+    this.showAdd = false;
+    this.showHistory = true;
     this.closeMenu();
   }
 
   closeMenu() {
-    this.menuController.close('adminMenu');
+    this.menuController.close("adminMenu");
   }
 
   logout() {
-    if(this.menuController.isOpen('adminMenu')) {
+    if (this.menuController.isOpen("adminMenu")) {
       this.closeMenu();
     }
     this.loginService.logout();
-    this.router.navigate(['/shop/home']);
+    this.router.navigate(["/shop/home"]);
   }
 
   uploadFile(event) {
     const file = event.target.files[0];
     const filename = file.name;
-    const fileExt = filename.split('.').pop();
-    const filePath = Math.random().toString(36).substring(2) + '.' + fileExt;
+    const fileExt = filename.split(".").pop();
+    const filePath = Math.random().toString(36).substring(2) + "." + fileExt;
     const fileRef = this.storage.ref(`images/${filePath}`);
     const task = this.storage.upload(`images/${filePath}`, file);
 
     this.uploadPercent = task.percentageChanges();
 
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe(downloadURL => {
-          this.image = downloadURL;
-        });
-      })
-   )
-  .subscribe()
+    task
+      .snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((downloadURL) => {
+            this.image = downloadURL;
+          });
+        })
+      )
+      .subscribe();
   }
 
   uploadItem(form) {
@@ -99,45 +115,54 @@ export class AdminPage implements OnInit {
 
     const id = this.firestore.createId();
 
-    this.firestore.collection("items").doc(id).set({
-      no: item_no,
-      name: item_name,
-      description: item_desc,
-      price: item_price,
-      image: item_image
-    }).then(() => {
-      //console.log("added");
-      alert('Item Added');
-      this.router.navigate(['/shop/admin']);
-    }).catch(() => {
-      //console.log("item no added");
-    });
-
+    this.firestore
+      .collection("items")
+      .doc(id)
+      .set({
+        no: item_no,
+        name: item_name,
+        description: item_desc,
+        price: item_price,
+        image: item_image,
+      })
+      .then(() => {
+        //console.log("added");
+        alert("Item Added");
+        this.router.navigate(["/shop/admin"]);
+      })
+      .catch(() => {
+        //console.log("item no added");
+      });
   }
 
   getItems() {
-    this.firestore.collection('items').valueChanges().subscribe(items => {
-      this.itemsList = items;
-    });
+    this.firestore
+      .collection("items")
+      .valueChanges()
+      .subscribe((items) => {
+        this.itemsList = items;
+      });
   }
 
   makeItemNo() {
     let max = 0;
-
-    if(this.itemsList) {
+    if (this.itemsList) {
       for (let item in this.itemsList) {
-        if (this.itemsList[item]['no'] > max) {
-          max = this.itemsList[item]['no']
+        if (this.itemsList[item]["no"] > max) {
+          max = this.itemsList[item]["no"];
         }
       }
     }
-
     return max + 1;
-
   }
 
   deleteItem(no, url) {
     this.itemService.deleteItem(no, url);
   }
 
+  getHistory() {
+    this.orderService.getOrdersHistory().subscribe((itemObj) => {
+      this.historyArr = itemObj;
+    });
+  }
 }
