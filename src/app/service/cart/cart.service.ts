@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AlertController } from "@ionic/angular";
 
 export interface CartItems {
   no: string;
@@ -16,7 +17,7 @@ export interface CartItems {
 export class CartService {
   cartList: CartItems[] = [];
 
-  constructor() {}
+  constructor(public alertController: AlertController) {}
 
   addToCart(item) {
     const { no, name, description, price, image } = item;
@@ -108,12 +109,38 @@ export class CartService {
   }
 
   clearCart() {
-    if (this.cartList.length > 0) {
-      this.cartList.splice(0, this.cartList.length);
-    }
+    this.presentAlertConfirm();
   }
 
   getCartItems() {
     return this.cartList;
+  }
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: "Confirm Action!",
+      message: "<strong>Are you sure you want to clear Cart</strong>?",
+      buttons: [
+        {
+          text: "No",
+          role: "cancel",
+          cssClass: "secondary",
+        },
+        {
+          text: "Yes",
+          handler: () => {
+            this.continueClearCart();
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  continueClearCart() {
+    if (this.cartList.length > 0) {
+      this.cartList.splice(0, this.cartList.length);
+    }
   }
 }
