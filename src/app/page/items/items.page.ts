@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from 'src/app/service/cart/cart.service';
-import { ItemService } from 'src/app/service/item/item.service';
-import { LoginService } from 'src/app/service/login/login.service';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { Component, OnInit } from "@angular/core";
+import { CartService } from "src/app/service/cart/cart.service";
+import { ItemService } from "src/app/service/item/item.service";
+import { LoginService } from "src/app/service/login/login.service";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 @Component({
-  selector: 'app-items',
-  templateUrl: './items.page.html',
-  styleUrls: ['./items.page.scss'],
+  selector: "app-items",
+  templateUrl: "./items.page.html",
+  styleUrls: ["./items.page.scss"],
 })
 export class ItemsPage implements OnInit {
-
   itemsList;
   cartCount;
+  itemsCategories;
 
   constructor(
     private itemService: ItemService,
     public cartService: CartService,
     public loginService: LoginService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.getItems();
@@ -27,8 +27,9 @@ export class ItemsPage implements OnInit {
   }
 
   getItems() {
-    this.itemService.getItems().subscribe(items => {
+    this.itemService.getItems().subscribe((items) => {
       this.itemsList = items;
+      this.itemsCategories = new Set([...items.map((item) => item.name)]);
     });
   }
 
@@ -43,9 +44,8 @@ export class ItemsPage implements OnInit {
   }
 
   filter(key) {
-    this.itemService.getFilteredItems(key).subscribe(items => {
+    this.itemService.getFilteredItems(key).subscribe((items) => {
       this.itemsList = items;
-    })
+    });
   }
-
 }
