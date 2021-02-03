@@ -9,6 +9,9 @@ const redirectUnauthorizedToLogin = () =>
 
 const routes: Routes = [
   {
+    // path: '',
+    // redirectTo: 'home',
+    // pathMatch: 'full'
     path: "",
     redirectTo: "shop/home",
     pathMatch: "full",
@@ -65,6 +68,16 @@ const routes: Routes = [
       },
     ],
   },
+
+  // {
+  //   path: 'customer-menu',
+  //   loadChildren: () => import('./page/menu/customer-menu/customer-menu.module').then( m => m.CustomerMenuPageModule)
+  // },
+
+  // {
+  //   path: 'shop',
+  //   loadChildren: () => import('./page/shop/shop.module').then( m => m.ShopPageModule)
+  // },
 ];
 
 @NgModule({
