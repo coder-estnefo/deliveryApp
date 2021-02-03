@@ -8,21 +8,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" color="primary">
-  
+  <div>
+    <ion-title class="headings">Food</ion-title>
+  </div>
+
   <div *ngIf="itemList" class="sideway-scroll">
-
-    <div>
-      <ion-title class="headings">Food</ion-title>
-    </div>
-
     <div class="cat">
-      <ion-button shape="round" color="tertiary" strong="true" routerLink="/shop/items">
+      <ion-button
+        shape="round"
+        color="tertiary"
+        strong="true"
+        routerLink="/shop/items"
+      >
         All
       </ion-button>
     </div>
 
     <div class="cat" *ngFor="let food of itemList">
-      <ion-button shape="round" color="tertiary" strong="true" routerLink="/shop/items">
+      <ion-button
+        shape="round"
+        color="tertiary"
+        strong="true"
+        routerLink="/shop/items"
+      >
         {{food.name}}
       </ion-button>
     </div>
@@ -37,9 +45,12 @@
 
     <div>
       <div class="catbox" *ngFor="let item of itemList">
-          <ion-card>
-            <ion-img [src]="item.image" style="max-width: 100%; max-height: 100%;"></ion-img>
-          </ion-card>
+        <ion-card>
+          <ion-img
+            [src]="item.image"
+            style="max-width: 100%; max-height: 100%"
+          ></ion-img>
+        </ion-card>
       </div>
     </div>
   </div>
@@ -49,5 +60,4 @@
       <ion-spinner color="tertiary"></ion-spinner>
     </div>
   </ng-template>
-  
 </ion-content>
